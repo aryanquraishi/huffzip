@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HuffZip - Decompress</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "surface-container-high": "#e7e7f3",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "inverse-primary": "#b4c5ff",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d8e3fb",
+                    "on-surface": "#191b23",
+                    "surface-container-low": "#f3f3fe",
+                    "surface-container-highest": "#e1e2ed",
+                    "outline-variant": "#c3c6d7",
+                    "inverse-on-surface": "#f0f0fb",
+                    "primary-fixed": "#dbe1ff",
+                    "surface-container": "#ededf9",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed": "#00174b",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "on-secondary-fixed": "#111c2d",
+                    "on-background": "#191b23",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "outline": "#737686",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2e3039",
+                    "tertiary": "#943700",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "surface-bright": "#faf8ff",
+                    "secondary-container": "#d5e0f8",
+                    "secondary": "#545f73",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-tertiary-container": "#ffede6",
+                    "on-primary-container": "#eeefff",
+                    "surface": "#faf8ff",
+                    "background": "#faf8ff",
+                    "primary": "#004ac6",
+                    "on-secondary-container": "#586377",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "error": "#ba1a1a",
+                    "primary-container": "#2563eb",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#ffdbcd",
+                    "surface-dim": "#d9d9e5",
+                    "on-surface-variant": "#434655",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#bc4800",
+                    "surface-tint": "#0053db",
+                    "surface-variant": "#e1e2ed"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section": "80px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "xxl": "48px",
+                    "xs": "4px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "h2": [
+                            "Inter"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "display": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "h3": [
+                            "Inter"
+                    ],
+                    "label-bold": [
+                            "Inter"
+                    ],
+                    "h1": [
+                            "Inter"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "h2": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h3": [
+                            "20px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-bold": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "h1": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0f172a;
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen flex flex-col font-body-md">
+<!-- TopNavBar -->
+<header class="bg-slate-900 font-['Inter'] antialiased text-sm font-medium docked full-width top-0 border-b border-slate-800 shadow-sm flex justify-between items-center w-full px-6 py-4 max-w-[1280px] mx-auto z-50">
+<div class="text-2xl font-black tracking-tighter text-white">HuffZip</div>
+<nav class="hidden md:flex space-x-6 items-center">
+<a class="text-slate-400 hover:text-blue-400 hover:bg-slate-800 transition-all px-3 py-2 rounded-md" href="#">Compress</a>
+<a class="text-blue-400 border-b-2 border-blue-400 pb-1 px-3 py-2" href="#">Decompress</a>
+<a class="text-slate-400 hover:text-blue-400 hover:bg-slate-800 transition-all px-3 py-2 rounded-md" href="#">How It Works</a>
+<a class="text-slate-400 hover:text-blue-400 hover:bg-slate-800 transition-all px-3 py-2 rounded-md" href="#">Compare</a>
+</nav>
+<div class="flex items-center space-x-4">
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center p-xl w-full max-w-[1280px] mx-auto">
+<div class="text-center mb-12">
+<h1 class="font-display text-white mb-sm">Decompress File</h1>
+<p class="font-body-lg text-slate-400 max-w-2xl mx-auto">Restore your .huff archives to their original state with lossless precision.</p>
+</div>
+<div class="w-full max-w-3xl grid grid-cols-1 gap-lg">
+<!-- Upload Zone -->
+<div class="border-2 border-dashed border-slate-600 rounded-xl p-section flex flex-col items-center justify-center bg-slate-800/50 hover:bg-slate-800 hover:border-blue-500 transition-all cursor-pointer shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] group">
+<span class="material-symbols-outlined text-6xl text-slate-500 mb-md group-hover:text-blue-400 transition-colors" style="font-variation-settings: 'FILL' 0;">unarchive</span>
+<h3 class="font-h3 text-white mb-xs">Drag &amp; Drop .huff file here</h3>
+<p class="font-body-sm text-slate-400 mb-lg">or click to browse your files</p>
+<button class="bg-blue-600 text-white font-label-bold px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center shadow-md">
+<span class="material-symbols-outlined mr-2 text-sm">folder_open</span>
+                    Select File
+                </button>
+</div>
+<!-- Extracted File Info (Simulated State) -->
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-lg shadow-sm">
+<h2 class="font-h3 text-white mb-md flex items-center border-b border-slate-700 pb-sm">
+<span class="material-symbols-outlined mr-sm text-blue-400">info</span>
+                    Original File Info
+                </h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-lg">
+<div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
+<span class="font-label-sm text-slate-400 uppercase block mb-1">Original Name</span>
+<span class="font-body-md text-white truncate block" title="annual_report_2023_final_v2.pdf">annual_report_2023_final_v2.pdf</span>
+</div>
+<div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
+<span class="font-label-sm text-slate-400 uppercase block mb-1">Original Size</span>
+<span class="font-body-md text-white block">14.2 MB</span>
+</div>
+<div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
+<span class="font-label-sm text-slate-400 uppercase block mb-1">File Type</span>
+<span class="font-body-md text-white block">PDF Document</span>
+</div>
+</div>
+<div class="flex justify-end">
+<button class="bg-blue-600 text-white font-label-bold px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center shadow-lg active:scale-95">
+<span class="material-symbols-outlined mr-2">download</span>
+                        Download Original
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 full-width border-t border-slate-800 mt-12 w-full py-8 px-6 flex flex-col md:flex-row justify-between items-center max-w-[1280px] mx-auto z-40">
+<div class="font-bold text-white mb-4 md:mb-0">
+            HuffZip
+        </div>
+<div class="font-['Inter'] text-xs text-slate-400 mb-4 md:mb-0">
+            © 2024 HuffZip Utility. High-performance file architecture.
+        </div>
+<nav class="flex space-x-6">
+<a class="font-['Inter'] text-xs text-slate-400 hover:text-white transition-colors underline opacity-80 hover:opacity-100" href="#">Privacy</a>
+<a class="font-['Inter'] text-xs text-slate-400 hover:text-white transition-colors underline opacity-80 hover:opacity-100" href="#">Terms</a>
+<a class="font-['Inter'] text-xs text-slate-400 hover:text-white transition-colors underline opacity-80 hover:opacity-100" href="#">API Docs</a>
+<a class="font-['Inter'] text-xs text-slate-400 hover:text-white transition-colors underline opacity-80 hover:opacity-100" href="#">Help Center</a>
+</nav>
+</footer>
+</body></html>

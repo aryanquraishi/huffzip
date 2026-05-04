@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HuffZip Compare - Mobile Data Density</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "surface-container-high": "#e7e7f3",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "inverse-primary": "#b4c5ff",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#d8e3fb",
+                    "on-surface": "#191b23",
+                    "surface-container-low": "#f3f3fe",
+                    "surface-container-highest": "#e1e2ed",
+                    "outline-variant": "#c3c6d7",
+                    "inverse-on-surface": "#f0f0fb",
+                    "primary-fixed": "#dbe1ff",
+                    "surface-container": "#ededf9",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed": "#00174b",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "on-secondary-fixed": "#111c2d",
+                    "on-background": "#191b23",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "outline": "#737686",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2e3039",
+                    "tertiary": "#943700",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "surface-bright": "#faf8ff",
+                    "secondary-container": "#d5e0f8",
+                    "secondary": "#545f73",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-tertiary-container": "#ffede6",
+                    "on-primary-container": "#eeefff",
+                    "surface": "#faf8ff",
+                    "background": "#faf8ff",
+                    "primary": "#004ac6",
+                    "on-secondary-container": "#586377",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "error": "#ba1a1a",
+                    "primary-container": "#2563eb",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#ffdbcd",
+                    "surface-dim": "#d9d9e5",
+                    "on-surface-variant": "#434655",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#bc4800",
+                    "surface-tint": "#0053db",
+                    "surface-variant": "#e1e2ed"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section": "80px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "xxl": "48px",
+                    "xs": "4px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "h2": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "h3": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "h1": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "h2": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h3": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-bold": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #0f172a; /* Tailwind slate-900 override for dark mode consistency */
+            color: #f8fafc; /* Tailwind slate-50 */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-slate-900 text-slate-50 font-body-md antialiased pb-24">
+<!-- TopNavBar (Mobile App Header Anchor) -->
+<header class="bg-slate-900 sticky top-0 z-40 border-b border-slate-800 shadow-sm flex justify-between items-center w-full px-6 py-4 max-w-[1280px] mx-auto">
+<div class="text-2xl font-black tracking-tighter text-white font-display">HuffZip</div>
+<div class="flex items-center gap-4 text-slate-400">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-md mx-auto p-4 space-y-xl">
+<!-- Header Section -->
+<section class="text-center pt-md">
+<h1 class="font-h1 text-h1 text-white mb-sm">Algorithm Compare</h1>
+<p class="font-body-sm text-body-sm text-slate-400">Real-time performance metrics against standard compression methods.</p>
+</section>
+<!-- Chart 1: Compressed Size (Stacked Mobile Layout) -->
+<section class="bg-slate-800 rounded-xl p-md shadow-sm border border-slate-700">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-h3 text-h3 text-white">Size Reduction</h2>
+<span class="material-symbols-outlined text-slate-400 text-sm" data-icon="data_usage">data_usage</span>
+</div>
+<div class="space-y-md">
+<!-- Bar 1: Original -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-xs">
+<span class="text-slate-400">Original File</span>
+<span class="text-slate-300">100 MB</span>
+</div>
+<div class="w-full bg-slate-700 rounded-full h-3">
+<div class="bg-slate-500 h-3 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<!-- Bar 2: RLE -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-xs">
+<span class="text-slate-400">RLE</span>
+<span class="text-slate-300">82 MB (-18%)</span>
+</div>
+<div class="w-full bg-slate-700 rounded-full h-3">
+<div class="bg-slate-400 h-3 rounded-full" style="width: 82%"></div>
+</div>
+</div>
+<!-- Bar 3: LZ77 -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-xs">
+<span class="text-slate-400">LZ77</span>
+<span class="text-slate-300">45 MB (-55%)</span>
+</div>
+<div class="w-full bg-slate-700 rounded-full h-3">
+<div class="bg-blue-400 h-3 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<!-- Bar 4: HuffZip (Highlight) -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-xs font-semibold">
+<span class="text-blue-400">HuffZip</span>
+<span class="text-blue-400">32 MB (-68%)</span>
+</div>
+<div class="w-full bg-slate-700 rounded-full h-4">
+<div class="bg-blue-600 h-4 rounded-full relative" style="width: 32%">
+<div class="absolute inset-0 bg-white/20 rounded-full animate-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Chart 2: Time to Compress -->
+<section class="bg-slate-800 rounded-xl p-md shadow-sm border border-slate-700">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-h3 text-h3 text-white">Processing Time</h2>
+<span class="material-symbols-outlined text-slate-400 text-sm" data-icon="timer">timer</span>
+</div>
+<div class="space-y-md">
+<!-- Bar 1: RLE -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-xs">
+<span class="text-slate-400">RLE</span>
+<span class="text-slate-300">0.8s</span>
+</div>
+<div class="w-full bg-slate-700 rounded-full h-3">
+<div class="bg-slate-400 h-3 rounded-full" style="width: 15%"></div>
+</div>
+</div>
+<!-- Bar 2: HuffZip (Highlight) -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-xs font-semibold">
+<span class="text-blue-400">HuffZip</span>
+<span class="text-blue-400">1.2s</span>
+</div>
+<div class="w-full bg-slate-700 rounded-full h-4">
+<div class="bg-blue-600 h-4 rounded-full" style="width: 25%"></div>
+</div>
+</div>
+<!-- Bar 3: LZ77 -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-xs">
+<span class="text-slate-400">LZ77</span>
+<span class="text-slate-300">4.5s</span>
+</div>
+<div class="w-full bg-slate-700 rounded-full h-3">
+<div class="bg-blue-400 h-3 rounded-full" style="width: 80%"></div>
+</div>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-slate-500 mt-sm text-right">Tested on 100MB text corpus.</p>
+</section>
+<!-- Data Dense Table: Savings Breakdown -->
+<section class="bg-slate-800 rounded-xl overflow-hidden shadow-sm border border-slate-700">
+<div class="px-md py-sm bg-slate-800/50 border-b border-slate-700">
+<h2 class="font-h3 text-h3 text-white">Efficiency Matrix</h2>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-900/50 border-b border-slate-700 font-label-sm text-label-sm text-slate-400 uppercase tracking-wider">
+<th class="py-sm px-md font-medium">Method</th>
+<th class="py-sm px-md font-medium text-right">Ratio</th>
+<th class="py-sm px-md font-medium text-right">Memory</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="border-b border-slate-700/50">
+<td class="py-sm px-md text-slate-300">RLE</td>
+<td class="py-sm px-md text-right text-slate-300">1.2:1</td>
+<td class="py-sm px-md text-right text-slate-300">Low</td>
+</tr>
+<tr class="border-b border-slate-700/50">
+<td class="py-sm px-md text-slate-300">LZ77</td>
+<td class="py-sm px-md text-right text-slate-300">2.2:1</td>
+<td class="py-sm px-md text-right text-slate-300">High</td>
+</tr>
+<tr class="bg-blue-900/20">
+<td class="py-sm px-md font-semibold text-blue-400 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+                                HuffZip
+                            </td>
+<td class="py-sm px-md text-right font-semibold text-blue-400">3.1:1</td>
+<td class="py-sm px-md text-right font-semibold text-blue-400">Med</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Action Button -->
+<div class="pt-sm pb-xl">
+<button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-label-bold text-label-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-[0_4px_14px_0_rgba(37,99,235,0.39)]">
+<span class="material-symbols-outlined" data-icon="compress">compress</span>
+                Start Compressing
+            </button>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Nav Shell) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-slate-900/90 backdrop-blur-md border-t border-slate-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:text-blue-500 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="compress">compress</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider mt-1">Compress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:text-blue-500 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="expand">expand</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider mt-1">Decompress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-blue-400 bg-blue-900/30 rounded-xl px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider mt-1">Tools</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:text-blue-500 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider mt-1">Account</span>
+</a>
+</nav>
+</body></html>

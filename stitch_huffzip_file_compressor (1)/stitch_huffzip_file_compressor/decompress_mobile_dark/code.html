@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HuffZip - Decompress</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "surface-container-high": "#e7e7f3",
+                      "on-secondary-fixed-variant": "#3c475a",
+                      "inverse-primary": "#b4c5ff",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed": "#d8e3fb",
+                      "on-surface": "#191b23",
+                      "surface-container-low": "#f3f3fe",
+                      "surface-container-highest": "#e1e2ed",
+                      "outline-variant": "#c3c6d7",
+                      "inverse-on-surface": "#f0f0fb",
+                      "primary-fixed": "#dbe1ff",
+                      "surface-container": "#ededf9",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed": "#00174b",
+                      "secondary-fixed-dim": "#bcc7de",
+                      "on-secondary-fixed": "#111c2d",
+                      "on-background": "#191b23",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "outline": "#737686",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#2e3039",
+                      "tertiary": "#943700",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "surface-bright": "#faf8ff",
+                      "secondary-container": "#d5e0f8",
+                      "secondary": "#545f73",
+                      "on-tertiary-fixed": "#360f00",
+                      "on-tertiary-container": "#ffede6",
+                      "on-primary-container": "#eeefff",
+                      "surface": "#faf8ff",
+                      "background": "#faf8ff",
+                      "primary": "#004ac6",
+                      "on-secondary-container": "#586377",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "error": "#ba1a1a",
+                      "primary-container": "#2563eb",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed": "#ffdbcd",
+                      "surface-dim": "#d9d9e5",
+                      "on-surface-variant": "#434655",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#bc4800",
+                      "surface-tint": "#0053db",
+                      "surface-variant": "#e1e2ed"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section": "80px",
+                      "md": "16px",
+                      "sm": "8px",
+                      "xl": "32px",
+                      "xxl": "48px",
+                      "xs": "4px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "h2": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "h3": [
+                              "Inter"
+                      ],
+                      "label-bold": [
+                              "Inter"
+                      ],
+                      "h1": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "h2": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h3": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-bold": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "h1": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body { background-color: #0f172a; color: #f8fafc; } /* Fallback for strict dark mode outside tailwind config */
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-slate-900 text-slate-50 antialiased font-body-md text-body-md pb-safe">
+<!-- Top Navigation (Web/Desktop - hidden on mobile) -->
+<header class="hidden md:flex bg-slate-900 flex justify-between items-center w-full px-6 py-4 max-w-[1280px] mx-auto docked full-width top-0 shadow-sm border-b border-slate-800">
+<div class="text-2xl font-black tracking-tighter text-white">
+            HuffZip
+        </div>
+<nav class="flex space-x-6 font-['Inter'] antialiased text-sm font-medium">
+<a class="text-slate-400 hover:text-blue-400 hover:bg-slate-800 transition-all px-3 py-2 rounded-md" href="#">Compress</a>
+<a class="text-blue-400 border-b-2 border-blue-400 pb-1 active:scale-95 duration-200" href="#">Decompress</a>
+<a class="text-slate-400 hover:text-blue-400 hover:bg-slate-800 transition-all px-3 py-2 rounded-md" href="#">How It Works</a>
+<a class="text-slate-400 hover:text-blue-400 hover:bg-slate-800 transition-all px-3 py-2 rounded-md" href="#">Compare</a>
+</nav>
+<div class="flex space-x-4">
+<button class="text-slate-400 hover:text-blue-400 transition-colors">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="text-slate-400 hover:text-blue-400 transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Mobile Header (Simplified for Mobile) -->
+<header class="md:hidden flex justify-center items-center py-sm px-md border-b border-slate-800 bg-slate-900">
+<div class="text-h3 font-h3 font-bold tracking-tighter text-white">
+            HuffZip
+        </div>
+</header>
+<!-- Main Canvas -->
+<main class="max-w-[1280px] mx-auto px-md md:px-lg py-xl flex flex-col items-center min-h-[calc(100vh-140px)]">
+<div class="text-center mb-xl w-full max-w-2xl">
+<h1 class="font-h1 text-h1 text-white mb-sm">Decompress File</h1>
+<p class="font-body-lg text-body-lg text-slate-400">Restore your .huff archives to their original format seamlessly.</p>
+</div>
+<!-- Dropzone Area -->
+<div class="w-full max-w-2xl bg-slate-800/50 border-2 border-dashed border-slate-600 rounded-xl p-xxl flex flex-col items-center justify-center text-center transition-all hover:border-primary-container hover:bg-slate-800 cursor-pointer group mb-xl">
+<div class="w-20 h-20 bg-slate-700 rounded-full flex items-center justify-center mb-md group-hover:bg-primary-container/20 group-hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[40px] text-slate-400 group-hover:text-blue-400">upload_file</span>
+</div>
+<h3 class="font-h3 text-h3 text-white mb-xs">Select or Drop .huff File</h3>
+<p class="font-body-sm text-body-sm text-slate-400 mb-lg">Maximum file size: 500MB</p>
+<button class="bg-primary-container text-white font-label-bold text-label-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">folder_open</span>
+                Browse Files
+            </button>
+</div>
+<!-- Processing / Result State (Example Data) -->
+<div class="w-full max-w-2xl bg-slate-800 border border-slate-700 rounded-xl p-lg shadow-lg">
+<div class="flex items-center justify-between mb-md border-b border-slate-700 pb-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center border border-slate-700">
+<span class="material-symbols-outlined text-blue-400 text-[24px]">description</span>
+</div>
+<div>
+<h4 class="font-h3 text-h3 text-white text-base">financial_report_Q3.csv</h4>
+<p class="font-body-sm text-body-sm text-slate-400">Restored from .huff archive</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 text-emerald-400 font-label-sm text-label-sm bg-emerald-400/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Ready
+                    </span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md mb-lg">
+<div class="bg-slate-900 rounded-lg p-md border border-slate-700">
+<p class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider mb-xs">Original Size</p>
+<p class="font-body-lg text-body-lg text-white font-semibold">14.2 MB</p>
+</div>
+<div class="bg-slate-900 rounded-lg p-md border border-slate-700">
+<p class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider mb-xs">Compressed Size</p>
+<p class="font-body-lg text-body-lg text-white font-semibold">4.8 MB</p>
+</div>
+</div>
+<button class="w-full bg-primary-container text-white font-label-bold text-label-bold py-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 shadow-[0_4px_14px_0_rgba(37,99,235,0.39)]">
+<span class="material-symbols-outlined">download</span>
+                Download Decompressed File
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-slate-900/90 backdrop-blur-md border-t border-slate-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-500 active:scale-90 transition-transform w-16" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">compress</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider">Compress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-blue-400 bg-blue-900/30 rounded-xl px-4 py-1 active:scale-90 transition-transform w-16" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">expand</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider">Decompress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-500 active:scale-90 transition-transform w-16" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">grid_view</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider">Tools</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-500 active:scale-90 transition-transform w-16" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">person</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider">Account</span>
+</a>
+</nav>
+</body></html>

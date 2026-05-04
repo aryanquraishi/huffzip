@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HuffZip Home Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf8ff",
+                        "secondary-container": "#d5e0f8",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2e3039",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#0053db",
+                        "primary-fixed": "#dbe1ff",
+                        "primary-container": "#2563eb",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#545f73",
+                        "on-surface-variant": "#434655",
+                        "error": "#ba1a1a",
+                        "primary": "#004ac6",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-primary-fixed": "#00174b",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f0f0fb",
+                        "tertiary-container": "#bc4800",
+                        "surface-container-low": "#f3f3fe",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "outline": "#737686",
+                        "on-primary-container": "#eeefff",
+                        "inverse-primary": "#b4c5ff",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-surface": "#191b23",
+                        "on-tertiary-container": "#ffede6",
+                        "surface-bright": "#faf8ff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-secondary-container": "#586377",
+                        "on-secondary-fixed": "#111c2d",
+                        "secondary-fixed": "#d8e3fb",
+                        "surface-variant": "#e1e2ed",
+                        "surface-container-high": "#e7e7f3",
+                        "on-error-container": "#93000a",
+                        "on-background": "#191b23",
+                        "surface-container-highest": "#e1e2ed",
+                        "surface-dim": "#d9d9e5",
+                        "tertiary": "#943700",
+                        "background": "#faf8ff",
+                        "outline-variant": "#c3c6d7",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdbcd",
+                        "surface-container": "#ededf9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xxl": "48px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "section": "80px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Inter"],
+                        "h2": ["Inter"],
+                        "display": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h1": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h3": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "h2": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "h1": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h3": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Mobile safe area padding for bottom nav */
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none transition-all duration-200">
+<div class="flex items-center justify-between px-4 h-16 w-full max-w-[1280px] mx-auto">
+<div class="flex items-center gap-xs">
+<span aria-hidden="true" class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-xl font-black">folder_zip</span>
+<h1 class="font-sans text-lg font-bold tracking-tight text-slate-900 dark:text-white">HuffZip</h1>
+</div>
+<!-- Desktop Nav (Hidden on mobile) -->
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-blue-600 dark:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800 px-md py-sm rounded-lg active:opacity-80 transition-all duration-200 font-label-bold text-label-bold" href="#">Home</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 px-md py-sm rounded-lg active:opacity-80 transition-all duration-200 font-label-bold text-label-bold" href="#">Decompress</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 px-md py-sm rounded-lg active:opacity-80 transition-all duration-200 font-label-bold text-label-bold" href="#">Compare</a>
+</nav>
+<div class="flex items-center">
+<img alt="User Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a person looking forward, neutral lighting, modern corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHLhBaCJ8DwkY50q8SqbfAzRlP7UKsv0y2rgnM53ie7hF9lEJHWuA5g5P9dDKy9IOxLj-wHfOrFT2b7u2jIOvFWiwZ7XQDcF6ZuvwSQWhtYHMyHrxBOq--lHwULvICcuIQ0PIxvB8OGXKe7OdMIy49ugbXesgDNPGUCmrA_CaC1eHZQEuAfQqQLwEVrjXoFRpQmhatgy1jy21apknWiKPehX3-dk8YGo_AUrpuEyWrrmf2uaasJULA3AxTQHsKAQqn-dHmQXMxT3E"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-[80px] px-md md:px-lg max-w-[1280px] mx-auto w-full flex flex-col gap-xl">
+<!-- Hero Section -->
+<section class="flex flex-col items-center text-center gap-md pt-xl pb-lg">
+<div class="w-16 h-16 bg-primary-container text-on-primary rounded-full flex items-center justify-center mb-sm shadow-md">
+<span class="material-symbols-outlined text-3xl">data_usage</span>
+</div>
+<h2 class="font-display text-display text-on-background">Data Efficiency</h2>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto">Optimize your storage workflow with high-performance compression and seamless extraction tools.</p>
+<div class="flex flex-col sm:flex-row gap-md w-full sm:w-auto mt-lg">
+<button class="bg-primary-container text-on-primary font-label-bold text-label-bold px-xl py-lg rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 flex items-center justify-center gap-sm w-full sm:w-auto">
+<span class="material-symbols-outlined">compress</span>
+                    Start Compressing
+                </button>
+<button class="bg-surface text-primary border border-primary font-label-bold text-label-bold px-xl py-lg rounded-lg hover:bg-surface-container-low transition-colors duration-200 flex items-center justify-center gap-sm w-full sm:w-auto">
+<span class="material-symbols-outlined">unarchive</span>
+                    Decompress File
+                </button>
+</div>
+</section>
+<!-- Stats Cards (Bento style) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md w-full">
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-lg flex flex-col gap-sm shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-sm text-secondary">
+<span class="material-symbols-outlined text-sm">folder_zip</span>
+<h3 class="font-label-bold text-label-bold">Files Compressed</h3>
+</div>
+<p class="font-h1 text-h1 text-on-background">12,450</p>
+<p class="font-body-sm text-body-sm text-secondary">+24% this week</p>
+</div>
+<div class="bg-primary-container text-on-primary rounded-xl p-lg flex flex-col gap-sm shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-sm text-on-primary-container">
+<span class="material-symbols-outlined text-sm">hard_drive</span>
+<h3 class="font-label-bold text-label-bold">Space Saved</h3>
+</div>
+<p class="font-h1 text-h1 text-on-primary">48.2 GB</p>
+<p class="font-body-sm text-body-sm text-on-primary-container">High efficiency achieved</p>
+</div>
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-lg flex flex-col gap-sm shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-sm text-secondary">
+<span class="material-symbols-outlined text-sm">call_merge</span>
+<h3 class="font-label-bold text-label-bold">Active Merges</h3>
+</div>
+<p class="font-h1 text-h1 text-on-background">3</p>
+<p class="font-body-sm text-body-sm text-secondary">Currently processing</p>
+</div>
+</section>
+<!-- Utility Suite Grid -->
+<section class="flex flex-col gap-md pt-lg pb-xxl border-t border-outline-variant">
+<h3 class="font-h2 text-h2 text-on-background">Utility Suite</h3>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-md">
+<button class="bg-surface border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center gap-sm hover:border-primary-container hover:shadow-md transition-all group aspect-square">
+<span class="material-symbols-outlined text-3xl text-secondary group-hover:text-primary-container transition-colors">library_add_check</span>
+<span class="font-label-sm text-label-sm text-on-surface text-center">Compress All</span>
+</button>
+<button class="bg-surface border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center gap-sm hover:border-primary-container hover:shadow-md transition-all group aspect-square">
+<span class="material-symbols-outlined text-3xl text-secondary group-hover:text-primary-container transition-colors">image</span>
+<span class="font-label-sm text-label-sm text-on-surface text-center">Image Reduce</span>
+</button>
+<button class="bg-surface border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center gap-sm hover:border-primary-container hover:shadow-md transition-all group aspect-square">
+<span class="material-symbols-outlined text-3xl text-secondary group-hover:text-primary-container transition-colors">description</span>
+<span class="font-label-sm text-label-sm text-on-surface text-center">Text Minimize</span>
+</button>
+<button class="bg-surface border border-outline-variant rounded-xl p-md flex flex-col items-center justify-center gap-sm hover:border-primary-container hover:shadow-md transition-all group aspect-square">
+<span class="material-symbols-outlined text-3xl text-secondary group-hover:text-primary-container transition-colors">security</span>
+<span class="font-label-sm text-label-sm text-on-surface text-center">Encrypt Archive</span>
+</button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 pb-safe bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 shadow-[0_-1px_3px_0_rgba(0,0,0,0.05)] z-50">
+<a class="flex flex-col items-center justify-center text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl px-3 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined fill text-[24px] mb-1">home</span>
+<span class="text-[11px] font-semibold uppercase tracking-wider">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-3 py-1 hover:text-blue-500 dark:hover:text-blue-300 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1">unarchive</span>
+<span class="text-[11px] font-semibold uppercase tracking-wider">Decompress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-3 py-1 hover:text-blue-500 dark:hover:text-blue-300 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1">compare_arrows</span>
+<span class="text-[11px] font-semibold uppercase tracking-wider">Compare</span>
+</a>
+</nav>
+</body></html>

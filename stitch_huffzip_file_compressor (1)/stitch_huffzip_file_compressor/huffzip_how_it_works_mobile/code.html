@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>How It Works - HuffZip</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#360f00",
+                        "on-secondary-fixed": "#111c2d",
+                        "on-surface-variant": "#434655",
+                        "on-surface": "#191b23",
+                        "on-secondary-container": "#586377",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-container-low": "#f3f3fe",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e7e7f3",
+                        "on-primary-container": "#eeefff",
+                        "surface-dim": "#d9d9e5",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "primary": "#004ac6",
+                        "inverse-on-surface": "#f0f0fb",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#bc4800",
+                        "surface-bright": "#faf8ff",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "on-background": "#191b23",
+                        "surface": "#faf8ff",
+                        "on-tertiary-container": "#ffede6",
+                        "background": "#faf8ff",
+                        "secondary-fixed": "#d8e3fb",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-variant": "#e1e2ed",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#ededf9",
+                        "surface-tint": "#0053db",
+                        "outline-variant": "#c3c6d7",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "outline": "#737686",
+                        "secondary": "#545f73",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#2563eb",
+                        "on-primary-fixed": "#00174b",
+                        "tertiary": "#943700",
+                        "surface-container-highest": "#e1e2ed",
+                        "secondary-container": "#d5e0f8",
+                        "inverse-surface": "#2e3039"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xxl": "48px",
+                        "section": "80px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h3": ["Inter"],
+                        "h1": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "h2": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "h3": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "h1": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 font-inter antialiased text-slate-900 dark:text-slate-100 docked full-width top-0 z-50 border-b border-slate-200 dark:border-slate-800 shadow-sm flex justify-between items-center w-full px-4 h-16 sticky">
+<div class="flex items-center gap-4">
+<button class="text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">HuffZip</span>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant text-label-sm font-label-sm overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="A small circular avatar placeholder showing a generic user portrait against a neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ9N6ias0707nRYS8TmdLgfYL9WR7W2H558XzdWyTXug0VnXlmwEDbxGLKlMLWHLHPL3Qp5O4rfId8QmwhHnsssbbg18vUBddAdSMeuDjdagpzPS3XD7zNAINiWFrhgPuGtCHy8jtVhCPAksSAzsoxeWvH8LUnDIEq-yDUXeY-s-Db5cVFfsO1RS-7Pu-tF5O3TuQRDQ0pEh0_Uz3l6yjhLhGqd4TWQNTEWZanGmxQK_HdQxURDsaeiDKJ3GYbX5LHb7utY4DFScc"/>
+</div>
+</div>
+</header>
+<main class="w-full max-w-3xl mx-auto px-4 sm:px-6 py-lg">
+<!-- Hero Section -->
+<section class="mb-xl text-center">
+<h1 class="font-h1 text-h1 text-on-background mb-sm">How HuffZip Works</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Discover the magic of Huffman coding, reducing file sizes intelligently.</p>
+</section>
+<!-- Timeline Section -->
+<section class="mb-xxl">
+<div class="relative border-l-2 border-outline-variant ml-4 pl-lg space-y-xl">
+<!-- Step 1 -->
+<div class="relative">
+<div class="absolute -left-[37px] top-0 w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[18px]">data_exploration</span>
+</div>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">1. Frequency Analysis</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">We scan your file to count how often each character appears. Frequent characters are noted for shorter codes.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative">
+<div class="absolute -left-[37px] top-0 w-8 h-8 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shadow-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+</div>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">2. Build the Tree</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">A binary tree is constructed where characters are leaves. More frequent characters sit closer to the root.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative">
+<div class="absolute -left-[37px] top-0 w-8 h-8 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shadow-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">code</span>
+</div>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">3. Generate Codes</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Traversing the tree assigns unique binary codes to each character. 0 for left, 1 for right.</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="relative">
+<div class="absolute -left-[37px] top-0 w-8 h-8 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shadow-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">compress</span>
+</div>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">4. Compress Data</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">The original characters in your file are replaced with their new, shorter binary codes.</p>
+</div>
+</div>
+<!-- Step 5 -->
+<div class="relative">
+<div class="absolute -left-[37px] top-0 w-8 h-8 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shadow-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">save</span>
+</div>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">5. Save Archive</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">The compressed data, along with a tiny header containing the tree to decode it later, is saved as a HuffZip file.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Comparison Table (Vertical Cards for Mobile) -->
+<section class="mb-xxl">
+<h2 class="font-h2 text-h2 text-on-background mb-lg text-center">Huffman vs ASCII</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="bg-surface-container rounded-lg p-lg border border-outline-variant shadow-sm">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-secondary">text_snippet</span>
+<h3 class="font-h3 text-h3 text-on-surface">Standard ASCII</h3>
+</div>
+<ul class="space-y-sm font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex justify-between border-b border-outline-variant pb-xs">
+<span class="font-medium text-on-surface">Encoding</span>
+<span>Fixed-length (8 bits)</span>
+</li>
+<li class="flex justify-between border-b border-outline-variant pb-xs">
+<span class="font-medium text-on-surface">Efficiency</span>
+<span>Lower for text</span>
+</li>
+<li class="flex justify-between pb-xs">
+<span class="font-medium text-on-surface">File Size</span>
+<span>100% (Baseline)</span>
+</li>
+</ul>
+</div>
+<div class="bg-primary-fixed rounded-lg p-lg border border-primary-fixed-dim shadow-sm">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary">folder_zip</span>
+<h3 class="font-h3 text-h3 text-on-primary-fixed">HuffZip (Huffman)</h3>
+</div>
+<ul class="space-y-sm font-body-sm text-body-sm text-on-primary-fixed-variant">
+<li class="flex justify-between border-b border-primary-fixed-dim pb-xs">
+<span class="font-medium text-on-primary-fixed">Encoding</span>
+<span>Variable-length</span>
+</li>
+<li class="flex justify-between border-b border-primary-fixed-dim pb-xs">
+<span class="font-medium text-on-primary-fixed">Efficiency</span>
+<span>Optimal for patterns</span>
+</li>
+<li class="flex justify-between pb-xs">
+<span class="font-medium text-on-primary-fixed">File Size</span>
+<span>~40-60% smaller</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- ADA Syllabus Connection -->
+<section class="mb-xl">
+<div class="bg-surface-bright rounded-xl p-lg border border-outline-variant shadow-sm flex flex-col sm:flex-row items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">school</span>
+</div>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface mb-xs">Algorithm Design Integration</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">This implementation demonstrates greedy algorithms and priority queues as outlined in the Advanced Data Structures (ADA) curriculum module 4.2.</p>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<div class="text-center mb-xl">
+<button class="bg-primary text-on-primary font-label-bold text-label-bold py-md px-xl rounded-full shadow-md hover:shadow-lg transition-shadow">
+                Try it yourself
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 shadow-[0_-1px_3px_0_rgba(0,0,0,0.05)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-2 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-500 hover:text-blue-500 transition-colors w-full h-full" href="#">
+<span class="material-symbols-outlined mb-1">compress</span>
+<span class="text-[11px] font-semibold uppercase tracking-wider">Compress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-500 hover:text-blue-500 transition-colors w-full h-full" href="#">
+<span class="material-symbols-outlined mb-1">folder_zip</span>
+<span class="text-[11px] font-semibold uppercase tracking-wider">Decompress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-blue-600 dark:text-blue-400 translate-y-[-2px] transition-transform w-full h-full" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="text-[11px] font-semibold uppercase tracking-wider">Tools</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HuffZip - Compare Algorithms</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "surface-container-high": "#e7e7f3",
+                      "on-secondary-fixed-variant": "#3c475a",
+                      "inverse-primary": "#b4c5ff",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed": "#d8e3fb",
+                      "on-surface": "#191b23",
+                      "surface-container-low": "#f3f3fe",
+                      "surface-container-highest": "#e1e2ed",
+                      "outline-variant": "#c3c6d7",
+                      "inverse-on-surface": "#f0f0fb",
+                      "primary-fixed": "#dbe1ff",
+                      "surface-container": "#ededf9",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed": "#00174b",
+                      "secondary-fixed-dim": "#bcc7de",
+                      "on-secondary-fixed": "#111c2d",
+                      "on-background": "#191b23",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "outline": "#737686",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#2e3039",
+                      "tertiary": "#943700",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "surface-bright": "#faf8ff",
+                      "secondary-container": "#d5e0f8",
+                      "secondary": "#545f73",
+                      "on-tertiary-fixed": "#360f00",
+                      "on-tertiary-container": "#ffede6",
+                      "on-primary-container": "#eeefff",
+                      "surface": "#faf8ff",
+                      "background": "#faf8ff",
+                      "primary": "#004ac6",
+                      "on-secondary-container": "#586377",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "error": "#ba1a1a",
+                      "primary-container": "#2563eb",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed": "#ffdbcd",
+                      "surface-dim": "#d9d9e5",
+                      "on-surface-variant": "#434655",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#bc4800",
+                      "surface-tint": "#0053db",
+                      "surface-variant": "#e1e2ed"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section": "80px",
+                      "md": "16px",
+                      "sm": "8px",
+                      "xl": "32px",
+                      "xxl": "48px",
+                      "xs": "4px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "h2": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "h3": [
+                              "Inter"
+                      ],
+                      "label-bold": [
+                              "Inter"
+                      ],
+                      "h1": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "h2": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h3": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-bold": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "h1": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background dark:bg-[#0f172a] text-on-background dark:text-slate-200 font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar from JSON -->
+<header class="bg-white dark:bg-slate-900 font-['Inter'] antialiased text-sm font-medium w-full top-0 border-b border-slate-200 dark:border-slate-800 shadow-sm hidden md:flex z-50 sticky">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-[1280px] mx-auto">
+<div class="text-2xl font-black tracking-tighter text-slate-900 dark:text-white">HuffZip</div>
+<nav class="hidden md:flex space-x-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-95 duration-200 px-3 py-2 rounded-md" href="#">Compress</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-95 duration-200 px-3 py-2 rounded-md" href="#">Decompress</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-95 duration-200 px-3 py-2 rounded-md" href="#">How It Works</a>
+<a class="text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400 pb-1 px-3 py-2 rounded-t-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-95 duration-200" href="#">Compare</a>
+</nav>
+<div class="flex items-center space-x-4 text-blue-600 dark:text-blue-400">
+<button class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-95 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<button class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-95 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-[1280px] mx-auto px-md md:px-6 py-xl flex flex-col gap-xl">
+<!-- Header Section -->
+<section class="flex flex-col gap-sm">
+<h1 class="font-h1 text-h1 text-slate-900 dark:text-white">Algorithm Comparison Dashboard</h1>
+<p class="font-body-lg text-body-lg text-slate-600 dark:text-slate-400 max-w-2xl">
+                Upload a test file to run real-time performance metrics across Huffman, RLE, and LZ77 compression algorithms. Analyze size reduction and processing time to determine the optimal strategy for your data type.
+            </p>
+</section>
+<!-- Upload Zone -->
+<section class="w-full rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-xxl flex flex-col items-center justify-center text-center gap-md transition-colors hover:border-primary-container dark:hover:border-primary-container">
+<div class="p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-4xl text-slate-400 dark:text-slate-500" data-icon="upload_file">upload_file</span>
+</div>
+<div>
+<h3 class="font-h3 text-h3 text-slate-900 dark:text-white mb-xs">Select or drop a file to test</h3>
+<p class="font-body-sm text-body-sm text-slate-500 dark:text-slate-400">Supported formats: .txt, .csv, .json, .log (Max 50MB)</p>
+</div>
+<button class="mt-sm bg-primary-container text-white px-lg py-sm rounded-lg font-label-bold text-label-bold hover:bg-primary transition-colors shadow-sm active:scale-95 duration-200 flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                Browse Files
+            </button>
+</section>
+<!-- Dashboard Grid -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- File Info Panel -->
+<div class="col-span-1 md:col-span-4 flex flex-col gap-md">
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-lg">
+<h2 class="font-h2 text-h2 text-slate-900 dark:text-white mb-md border-b border-slate-100 dark:border-slate-700 pb-sm">Active Test File</h2>
+<div class="flex items-start gap-md mb-md">
+<div class="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg text-primary-container dark:text-blue-400">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+<div>
+<p class="font-label-bold text-label-bold text-slate-900 dark:text-white">server_logs_q3.txt</p>
+<p class="font-body-sm text-body-sm text-slate-500 dark:text-slate-400">Text Document</p>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-slate-500 dark:text-slate-400">Original Size</span>
+<span class="font-label-bold text-label-bold text-slate-900 dark:text-white">12.4 MB</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-slate-500 dark:text-slate-400">Entropy Level</span>
+<span class="font-label-bold text-label-bold text-slate-900 dark:text-white">Low (Repetitive)</span>
+</div>
+</div>
+</div>
+<!-- Conclusion Box -->
+<div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl shadow-sm border border-emerald-200 dark:border-emerald-800 p-lg flex flex-col gap-sm">
+<div class="flex items-center gap-xs text-emerald-700 dark:text-emerald-400">
+<span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
+<h3 class="font-h3 text-h3">Optimal Algorithm</h3>
+</div>
+<p class="font-body-md text-body-md text-emerald-900 dark:text-emerald-100">
+                        For this specific file, <strong class="font-semibold">LZ77</strong> achieved the best balance. While Huffman was faster, LZ77 provided significantly better compression for highly repetitive text log data.
+                    </p>
+<button class="mt-sm bg-emerald-600 text-white px-md py-sm rounded-lg font-label-bold text-label-bold hover:bg-emerald-700 transition-colors shadow-sm active:scale-95 duration-200 text-center w-full">
+                        Compress with LZ77
+                    </button>
+</div>
+</div>
+<!-- Charts Area -->
+<div class="col-span-1 md:col-span-8 flex flex-col gap-lg">
+<!-- Compression Ratio Chart (Mockup) -->
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-lg flex flex-col gap-md">
+<div class="flex justify-between items-center">
+<h2 class="font-h2 text-h2 text-slate-900 dark:text-white">Compression Results (Size)</h2>
+<span class="font-label-sm text-label-sm px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">Lower is better</span>
+</div>
+<div class="h-[250px] w-full flex items-end gap-md pt-xl border-b border-slate-200 dark:border-slate-700 relative">
+<!-- Y Axis labels mock -->
+<div class="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-slate-400 font-mono py-2">
+<span>12MB</span>
+<span>9MB</span>
+<span>6MB</span>
+<span>3MB</span>
+<span>0MB</span>
+</div>
+<div class="flex-1 flex justify-around items-end ml-8 h-full pb-2">
+<!-- Original -->
+<div class="flex flex-col items-center gap-sm group w-1/5">
+<div class="w-full bg-slate-300 dark:bg-slate-600 rounded-t-sm h-[95%] transition-all"></div>
+<span class="font-label-sm text-label-sm text-slate-600 dark:text-slate-400">Original</span>
+</div>
+<!-- Huffman -->
+<div class="flex flex-col items-center gap-sm group w-1/5">
+<div class="w-full bg-blue-400 dark:bg-blue-500 rounded-t-sm h-[65%] hover:bg-blue-500 transition-all shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)]"></div>
+<span class="font-label-sm text-label-sm text-slate-600 dark:text-slate-400">Huffman</span>
+</div>
+<!-- RLE -->
+<div class="flex flex-col items-center gap-sm group w-1/5">
+<div class="w-full bg-indigo-400 dark:bg-indigo-500 rounded-t-sm h-[80%] hover:bg-indigo-500 transition-all shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)]"></div>
+<span class="font-label-sm text-label-sm text-slate-600 dark:text-slate-400">RLE</span>
+</div>
+<!-- LZ77 -->
+<div class="flex flex-col items-center gap-sm group w-1/5">
+<div class="w-full bg-emerald-400 dark:bg-emerald-500 rounded-t-sm h-[40%] hover:bg-emerald-500 transition-all shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] border-2 border-emerald-300 dark:border-emerald-400"></div>
+<span class="font-label-sm text-label-sm text-slate-900 dark:text-white font-bold">LZ77</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Processing Time Chart (Mockup) -->
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-lg flex flex-col gap-md">
+<div class="flex justify-between items-center">
+<h2 class="font-h2 text-h2 text-slate-900 dark:text-white">Processing Time</h2>
+<span class="font-label-sm text-label-sm px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">Lower is better</span>
+</div>
+<div class="h-[200px] w-full flex items-end gap-md pt-xl border-b border-slate-200 dark:border-slate-700 relative">
+<!-- Y Axis labels mock -->
+<div class="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-slate-400 font-mono py-2">
+<span>1.5s</span>
+<span>1.0s</span>
+<span>0.5s</span>
+<span>0s</span>
+</div>
+<div class="flex-1 flex justify-around items-end ml-8 h-full pb-2">
+<!-- Huffman -->
+<div class="flex flex-col items-center gap-sm group w-1/4">
+<div class="w-full bg-blue-300 dark:bg-blue-600/70 rounded-t-sm h-[20%] transition-all border-2 border-blue-400"></div>
+<span class="font-label-sm text-label-sm text-slate-900 dark:text-white font-bold">Huffman</span>
+</div>
+<!-- RLE -->
+<div class="flex flex-col items-center gap-sm group w-1/4">
+<div class="w-full bg-indigo-300 dark:bg-indigo-600/70 rounded-t-sm h-[10%] transition-all"></div>
+<span class="font-label-sm text-label-sm text-slate-600 dark:text-slate-400">RLE</span>
+</div>
+<!-- LZ77 -->
+<div class="flex flex-col items-center gap-sm group w-1/4">
+<div class="w-full bg-emerald-300 dark:bg-emerald-600/70 rounded-t-sm h-[85%] transition-all"></div>
+<span class="font-label-sm text-label-sm text-slate-600 dark:text-slate-400">LZ77</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar for Mobile from JSON -->
+<nav class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md fixed bottom-0 w-full border-t rounded-t-xl border-slate-200 dark:border-slate-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] flex md:hidden justify-around items-center px-4 py-3 pb-safe z-50">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:text-blue-500 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="compress">compress</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider mt-1">Compress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:text-blue-500 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="expand">expand</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider mt-1">Decompress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:text-blue-500 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider mt-1">Tools</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:text-blue-500 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider mt-1">Account</span>
+</a>
+</nav>
+<!-- Footer from JSON -->
+<footer class="bg-slate-50 dark:bg-slate-950 full-width border-t mt-12 border-slate-200 dark:border-slate-800 flat font-['Inter'] text-xs text-slate-500 dark:text-slate-400 w-full py-8 px-6 flex flex-col md:flex-row justify-between items-center max-w-[1280px] mx-auto pb-24 md:pb-8">
+<div class="font-bold text-slate-900 dark:text-white mb-4 md:mb-0">
+            © 2024 HuffZip Utility. High-performance file architecture.
+        </div>
+<div class="flex space-x-4">
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors underline opacity-80 hover:opacity-100" href="#">Privacy</a>
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors underline opacity-80 hover:opacity-100" href="#">Terms</a>
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors underline opacity-80 hover:opacity-100" href="#">API Docs</a>
+<a class="hover:text-slate-900 dark:hover:text-white transition-colors underline opacity-80 hover:opacity-100" href="#">Help Center</a>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: huffzip-backend
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: CLEANUP_SECRET
+        sync: false
+      - key: MAX_FILE_SIZE_MB
+        value: "20"
+      - key: FILE_EXPIRY_MINUTES
+        value: "5"
+      - key: CORS_ORIGIN
+        value: "http://localhost:5173"
+      - key: PYTHON_VERSION
+        value: "3.11.9"
