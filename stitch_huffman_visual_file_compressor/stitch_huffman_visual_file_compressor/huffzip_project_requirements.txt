@@ -1,0 +1,17 @@
+HuffZip is a full-stack web application that compresses any file using Huffman Coding — a classic Greedy Algorithm. It features real-time visualization of the algorithm working step-by-step, a live terminal-style log feed, and a comparison tool to benchmark Huffman against other compression algorithms (RLE and LZ77).
+
+The project demonstrates the practical application of the Greedy Method from the ADA syllabus (Unit 4), specifically Huffman Codes, with:
+- Greedy Choice Property: Always merge the two minimum frequency nodes.
+- Optimal Substructure: Subtrees are themselves optimal Huffman trees.
+- Time Complexity: O(n log n) using a min-heap.
+- Space Complexity: O(n) for tree and code table storage.
+
+Page List:
+1. Home Page: Hero, stats, tools grid.
+2. Compress Page: Main tool with D3 tree visualization and live logs.
+3. Compress Image: Specialized image view.
+4. Compress Text: Specialized text view.
+5. Compress Audio: Specialized audio view.
+6. Decompress Page: .huff file reconstruction.
+7. Compare Algorithms: Side-by-side benchmark (Huffman vs RLE vs LZ77).
+8. How It Works: Educational walkthrough.

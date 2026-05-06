@@ -1,40 +1,57 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { SpotlightCard } from '../ui/spotlight-card';
 
 const TOOLS = [
-  { icon: 'folder_zip', title: 'Compress All', desc: 'Intelligent compression for any file type maintaining structure.', path: '/compress', color: '#ff544a' },
-  { icon: 'image', title: 'Compress Image', desc: 'Specifically tuned for visual media — BMP, PNG, JPEG.', path: '/compress/image', color: '#ffb930' },
-  { icon: 'description', title: 'Compress Text', desc: 'Maximum savings via Huffman coding for text & documents.', path: '/compress/text', color: '#3aa68b' },
-  { icon: 'audio_file', title: 'Compress Audio', desc: 'Specialized for WAV/MP3 — preserves audio fidelity.', path: '/compress/audio', color: '#00c3ff' },
-  { icon: 'unarchive', title: 'Decompress', desc: 'Restore .huff archives to original with byte-perfect integrity.', path: '/decompress', color: '#9d72e8' },
-  { icon: 'compare_arrows', title: 'Compare', desc: 'Benchmark Huffman vs RLE vs LZ77 side-by-side.', path: '/compare', color: '#1db954' },
+  { icon: 'compress', title: 'Compress File', desc: 'Reduce file size significantly using optimal prefix codes.', path: '/compress' },
+  { icon: 'expand', title: 'Decompress File', desc: 'Restore your compressed files to their original state losslessly.', path: '/decompress' },
+  { icon: 'compare_arrows', title: 'Compare Algorithms', desc: 'Analyze Huffman efficiency against standard ZIP compression.', path: '/compare' },
+  { icon: 'account_tree', title: 'How it Works', desc: 'Visualize the tree generation and prefix code assignment.', path: '/how-it-works' },
 ];
 
 export default function ToolsGrid() {
   return (
-    <section className="w-full bg-[#f6f5f3] dark:bg-slate-900 pb-20 px-4">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
-          {TOOLS.map((tool, i) => (
-            <motion.div
-              key={tool.path + tool.title}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-            >
-              <Link to={tool.path} className="no-underline block h-full">
-                <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-6 md:p-8 rounded-xl hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_4px_16px_rgba(255,255,255,0.05)] transition-shadow cursor-pointer group h-full flex flex-col items-start">
-                  <div className="mb-4">
-                    <span className="material-symbols-outlined text-[32px] md:text-[40px]" style={{ color: tool.color }}>{tool.icon}</span>
+    <section className="w-full max-w-[1200px]">
+      <motion.h2
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-[32px] font-semibold leading-[1.3] text-[#1c1c19] dark:text-white text-center mb-12 w-full flex justify-center"
+      >
+        Core Utilities
+      </motion.h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {TOOLS.map((tool, i) => (
+          <motion.div
+            key={tool.path}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.06 }}
+          >
+            <Link to={tool.path} className="no-underline block h-full">
+              <SpotlightCard
+                className="h-full border-[#bdc8cb]/60 dark:border-gray-800 bg-white dark:bg-[#1a1a1a] hover:border-[#005f6a] dark:hover:border-teal-400 shadow-sm transition-all duration-300 hover:-translate-y-1"
+                spotlightColor="rgba(0, 95, 106, 0.12)"
+              >
+                <div className="px-6 py-10 lg:py-12 flex flex-col items-center justify-center text-center h-full min-h-[300px]">
+                  <div className="w-16 h-16 lg:w-[72px] lg:h-[72px] rounded-full bg-[#ebe8e4] dark:bg-[#2a2a2a] flex items-center justify-center mb-6">
+                    <span className="material-symbols-outlined text-[32px] text-[#005f6a] dark:text-teal-400">
+                      {tool.icon}
+                    </span>
                   </div>
-                  <h3 className="text-[18px] md:text-[20px] font-bold text-slate-800 dark:text-slate-100 mb-2 leading-tight group-hover:text-primary transition-colors">{tool.title}</h3>
-                  <p className="text-[13px] md:text-[14px] text-slate-500 dark:text-slate-400 leading-snug flex-1">{tool.desc}</p>
+                  <h3 className="text-lg font-semibold text-[#1c1c19] dark:text-white mb-3">
+                    {tool.title}
+                  </h3>
+                  <p className="text-sm text-[#3e494a] dark:text-gray-400 leading-relaxed w-[85%] mx-auto">
+                    {tool.desc}
+                  </p>
                 </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+              </SpotlightCard>
+            </Link>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

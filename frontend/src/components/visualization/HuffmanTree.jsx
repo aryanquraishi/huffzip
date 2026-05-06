@@ -51,8 +51,8 @@ export default function HuffmanTree({ treeData = [], events = [] }) {
     svg.call(zoom);
     svg.call(zoom.transform, d3.zoomIdentity.translate(margin.left, margin.top));
 
-    const lineColor = isDark ? 'rgba(96,165,250,0.25)' : 'rgba(37,99,235,0.2)';
-    const textColor = isDark ? '#94a3b8' : '#64748b';
+    const lineColor = isDark ? 'rgba(94,234,212,0.25)' : 'rgba(0,95,106,0.2)';
+    const textColor = isDark ? '#9ca3af' : '#6e797b';
 
     g.selectAll('.link').data(hierarchy.links()).join('line')
       .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
@@ -71,11 +71,11 @@ export default function HuffmanTree({ treeData = [], events = [] }) {
     nodes.append('circle')
       .attr('r', d => d.data.is_leaf ? 8 : 6)
       .attr('fill', d => {
-        if (d.depth === 0) return '#16a34a';
-        if (d.data.is_leaf) return '#2563eb';
-        return isDark ? '#475569' : '#94a3b8';
+        if (d.depth === 0) return '#005f6a';
+        if (d.data.is_leaf) return '#005f6a';
+        return isDark ? '#4b5563' : '#bdc8cb';
       })
-      .attr('stroke', isDark ? '#1e293b' : '#ffffff').attr('stroke-width', 2)
+      .attr('stroke', isDark ? '#1a1a1a' : '#ffffff').attr('stroke-width', 2)
       .attr('opacity', 0).transition().duration(300).delay((d, i) => i * 3).attr('opacity', 1);
 
     const totalNodes = hierarchy.descendants().length;
@@ -91,14 +91,14 @@ export default function HuffmanTree({ treeData = [], events = [] }) {
     }
   }, [allTreeNodes, dimensions, isDark]);
 
-  const treeBg = isDark ? '#0f172a' : '#f1f5f9';
+  const treeBg = isDark ? '#111111' : '#fcf9f5';
 
   return (
-    <div ref={containerRef} className="surface rounded-xl overflow-hidden relative h-full flex flex-col">
-      <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: isDark ? '#1e293b' : '#e2e8f0' }}>
-        <h3 className="text-base font-semibold text-on-bg">Huffman Tree</h3>
+    <div ref={containerRef} className="bg-white dark:bg-[#1a1a1a] border border-[#bdc8cb] dark:border-gray-800 rounded-lg overflow-hidden relative h-full flex flex-col">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[#bdc8cb] dark:border-gray-800">
+        <h3 className="text-base font-semibold text-[#1c1c19] dark:text-white">Huffman Tree</h3>
         {allTreeNodes.length > 0 && (
-          <span className="text-xs font-medium px-2 py-1 rounded" style={{ background: isDark ? 'rgba(96,165,250,0.1)' : 'rgba(37,99,235,0.08)', color: isDark ? '#60a5fa' : '#2563eb' }}>
+          <span className="text-xs font-medium px-2 py-1 rounded" style={{ background: isDark ? 'rgba(94,234,212,0.1)' : 'rgba(0,95,106,0.08)', color: isDark ? '#5eead4' : '#005f6a' }}>
             Building
           </span>
         )}
@@ -107,8 +107,8 @@ export default function HuffmanTree({ treeData = [], events = [] }) {
         {allTreeNodes.length === 0 ? (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              <span className="material-symbols-outlined text-muted-c mb-2 block" style={{ fontSize: '40px' }}>park</span>
-              <p className="text-sm text-muted-c">Huffman tree will appear here</p>
+              <span className="material-symbols-outlined text-[#6e797b] dark:text-gray-500 mb-2 block" style={{ fontSize: '40px' }}>park</span>
+              <p className="text-sm text-[#6e797b] dark:text-gray-500">Huffman tree will appear here</p>
             </div>
           </div>
         ) : (
@@ -116,7 +116,7 @@ export default function HuffmanTree({ treeData = [], events = [] }) {
         )}
       </div>
       {allTreeNodes.length > 0 && (
-        <div className="px-4 py-2 border-t text-xs text-muted-c" style={{ borderColor: isDark ? '#1e293b' : '#e2e8f0' }}>
+        <div className="px-4 py-2 border-t border-[#bdc8cb] dark:border-gray-800 text-xs text-[#6e797b] dark:text-gray-500">
           Active Node: {allTreeNodes[allTreeNodes.length-1]?.freq || 0} (Frequency)
         </div>
       )}

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Compare Algorithms - HuffZip</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#ebe8e4",
+                        "on-tertiary-fixed": "#410002",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#bdc8cb",
+                        "tertiary-fixed": "#ffdad6",
+                        "on-background": "#1c1c19",
+                        "on-secondary-fixed-variant": "#46464e",
+                        "on-primary-container": "#d5f9ff",
+                        "on-tertiary-container": "#ffefed",
+                        "on-primary-fixed-variant": "#004f57",
+                        "secondary-fixed-dim": "#c7c5cf",
+                        "surface": "#fcf9f5",
+                        "inverse-primary": "#7ad4e2",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#006874",
+                        "inverse-on-surface": "#f3f0ec",
+                        "surface-bright": "#fcf9f5",
+                        "secondary": "#5e5d66",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb4ab",
+                        "tertiary-container": "#d52625",
+                        "primary-container": "#007a87",
+                        "secondary-fixed": "#e3e1ec",
+                        "on-primary-fixed": "#001f24",
+                        "surface-dim": "#dcdad6",
+                        "secondary-container": "#e3e1ec",
+                        "primary-fixed-dim": "#7ad4e2",
+                        "tertiary": "#b00010",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#1b1b22",
+                        "surface-container-highest": "#e5e2de",
+                        "surface-container-low": "#f6f3ef",
+                        "background": "#fcf9f5",
+                        "primary-fixed": "#97f0ff",
+                        "outline": "#6e797b",
+                        "inverse-surface": "#31302e",
+                        "primary": "#005f6a",
+                        "on-surface": "#1c1c19",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#3e494a",
+                        "on-secondary-container": "#64636c",
+                        "surface-container": "#f0ede9",
+                        "on-tertiary-fixed-variant": "#93000b",
+                        "surface-variant": "#e5e2de"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "section-gap": "80px",
+                        "container-max": "1200px",
+                        "margin-page": "40px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-mono": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-mono": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopNavBar -->
+<header class="bg-white/90 dark:bg-slate-950/90 backdrop-blur-md font-['Inter'] antialiased text-sm font-medium tracking-tight docked full-width top-0 z-50 border-b border-gray-100 dark:border-gray-800 flat no shadows">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-6 h-16 w-full border-b border-gray-200 dark:border-gray-800">
+<div class="text-2xl font-black text-teal-700 dark:text-teal-400 tracking-tighter">HuffZip</div>
+<nav class="hidden md:flex gap-6">
+<a class="text-gray-500 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-300 transition-colors hover:bg-gray-50 dark:hover:bg-slate-900 transition-all duration-200 active:scale-[0.98] transition-transform duration-100 p-2 rounded-DEFAULT" href="#">Compress</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-300 transition-colors hover:bg-gray-50 dark:hover:bg-slate-900 transition-all duration-200 active:scale-[0.98] transition-transform duration-100 p-2 rounded-DEFAULT" href="#">Decompress</a>
+<a class="text-teal-700 dark:text-teal-400 border-b-2 border-teal-600 dark:border-teal-400 pb-1 hover:bg-gray-50 dark:hover:bg-slate-900 transition-all duration-200 active:scale-[0.98] transition-transform duration-100 p-2 rounded-DEFAULT" href="#">Compare</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-300 transition-colors hover:bg-gray-50 dark:hover:bg-slate-900 transition-all duration-200 active:scale-[0.98] transition-transform duration-100 p-2 rounded-DEFAULT" href="#">Learn</a>
+</nav>
+<div class="flex items-center gap-4 hidden md:flex">
+<button class="text-teal-600 dark:text-teal-400 font-label-sm text-label-sm bg-surface-container-high px-4 py-2 rounded-full hover:bg-surface-variant transition-colors">Upload File</button>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-gray-500 hover:text-teal-600 cursor-pointer" data-icon="settings">settings</span>
+<span class="material-symbols-outlined text-gray-500 hover:text-teal-600 cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+<!-- Mobile Menu Toggle (Simplified) -->
+<button class="md:hidden text-gray-500">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-grow max-w-container-max mx-auto w-full px-gutter py-margin-page flex flex-col gap-section-gap">
+<!-- Header Section -->
+<section class="text-center max-w-3xl mx-auto">
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-unit">Algorithm Benchmark</h1>
+<p class="font-body-lg text-body-lg text-secondary">Upload a file to test and compare compression efficiency across three distinct algorithms: Huffman, Run-Length Encoding (RLE), and LZ77.</p>
+</section>
+<!-- Upload & Run Section -->
+<section class="bg-surface-container-lowest rounded-xl border border-surface-variant p-gutter shadow-sm flex flex-col items-center gap-6">
+<div class="w-full max-w-2xl border-2 border-dashed border-primary rounded-lg p-12 flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-4xl text-primary mb-4 group-hover:scale-110 transition-transform">cloud_upload</span>
+<p class="font-headline-md text-headline-md text-on-surface mb-2">Drag &amp; Drop file here</p>
+<p class="font-body-md text-body-md text-secondary mb-6">or click to browse from your device</p>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-6 py-3 rounded-full hover:bg-on-primary-fixed-variant transition-colors">Select File</button>
+</div>
+<div class="flex items-center gap-4 w-full max-w-2xl bg-surface-container-high p-4 rounded-lg">
+<span class="material-symbols-outlined text-secondary">insert_drive_file</span>
+<div class="flex-grow">
+<p class="font-label-sm text-label-sm text-on-surface">sample_dataset.txt</p>
+<p class="font-label-sm text-label-sm text-secondary font-normal">2.4 MB</p>
+</div>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-6 py-2 rounded-full hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">play_arrow</span> Run Benchmark
+                </button>
+</div>
+</section>
+<!-- Results: Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Huffman Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-primary p-6 shadow-sm flex flex-col relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Huffman</h3>
+<p class="font-label-mono text-label-mono text-secondary">Greedy O(n log n)</p>
+</div>
+<span class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-3 py-1 rounded-full">Optimal</span>
+</div>
+<div class="flex-grow flex flex-col gap-4 mt-4">
+<div class="bg-surface-container-low p-4 rounded-lg">
+<p class="font-label-sm text-label-sm text-secondary mb-1">Compressed Size</p>
+<p class="font-headline-md text-headline-md text-primary">1.1 MB <span class="font-body-md text-body-md text-secondary ml-2">-54%</span></p>
+<div class="w-full bg-surface-variant h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full w-[46%] rounded-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg">
+<p class="font-label-sm text-label-sm text-secondary mb-1">Time Taken</p>
+<p class="font-headline-md text-headline-md text-on-surface">450 ms</p>
+</div>
+</div>
+</div>
+<!-- RLE Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant p-6 shadow-sm flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">RLE</h3>
+<p class="font-label-mono text-label-mono text-secondary">O(n)</p>
+</div>
+</div>
+<div class="flex-grow flex flex-col gap-4 mt-4">
+<div class="bg-surface-container-low p-4 rounded-lg">
+<p class="font-label-sm text-label-sm text-secondary mb-1">Compressed Size</p>
+<p class="font-headline-md text-headline-md text-on-surface">2.1 MB <span class="font-body-md text-body-md text-secondary ml-2">-12%</span></p>
+<div class="w-full bg-surface-variant h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-secondary h-full w-[88%] rounded-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg">
+<p class="font-label-sm text-label-sm text-secondary mb-1">Time Taken</p>
+<p class="font-headline-md text-headline-md text-on-surface">120 ms</p>
+</div>
+</div>
+</div>
+<!-- LZ77 Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant p-6 shadow-sm flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">LZ77</h3>
+<p class="font-label-mono text-label-mono text-secondary">Dictionary-based</p>
+</div>
+</div>
+<div class="flex-grow flex flex-col gap-4 mt-4">
+<div class="bg-surface-container-low p-4 rounded-lg">
+<p class="font-label-sm text-label-sm text-secondary mb-1">Compressed Size</p>
+<p class="font-headline-md text-headline-md text-on-surface">1.4 MB <span class="font-body-md text-body-md text-secondary ml-2">-41%</span></p>
+<div class="w-full bg-surface-variant h-2 rounded-full mt-2 overflow-hidden">
+<div class="bg-outline h-full w-[59%] rounded-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg">
+<p class="font-label-sm text-label-sm text-secondary mb-1">Time Taken</p>
+<p class="font-headline-md text-headline-md text-on-surface">850 ms</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Charts Section (Mocked Recharts Style) -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Size Chart -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant p-6 shadow-sm">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-6">Compression Efficiency (Size)</h4>
+<div class="relative h-64 flex items-end gap-8 px-8 border-l border-b border-surface-variant pb-2 ml-4">
+<!-- Y Axis Labels -->
+<div class="absolute -left-4 top-0 h-full flex flex-col justify-between items-end text-xs text-secondary font-label-mono py-2 w-12">
+<span>2.5M</span>
+<span>2.0M</span>
+<span>1.5M</span>
+<span>1.0M</span>
+<span>0.5M</span>
+</div>
+<!-- Bars -->
+<div class="w-1/3 flex flex-col items-center gap-2 group">
+<div class="w-16 bg-primary h-[44%] rounded-t-sm transition-all duration-300 group-hover:opacity-80 relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded transition-opacity whitespace-nowrap">1.1 MB</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">Huffman</span>
+</div>
+<div class="w-1/3 flex flex-col items-center gap-2 group">
+<div class="w-16 bg-secondary h-[84%] rounded-t-sm transition-all duration-300 group-hover:opacity-80 relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded transition-opacity whitespace-nowrap">2.1 MB</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">RLE</span>
+</div>
+<div class="w-1/3 flex flex-col items-center gap-2 group">
+<div class="w-16 bg-outline h-[56%] rounded-t-sm transition-all duration-300 group-hover:opacity-80 relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded transition-opacity whitespace-nowrap">1.4 MB</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">LZ77</span>
+</div>
+</div>
+</div>
+<!-- Time Chart -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-variant p-6 shadow-sm">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-6">Processing Time</h4>
+<div class="relative h-64 flex flex-col justify-around px-8 border-l border-b border-surface-variant pb-4 ml-4">
+<!-- X Axis Labels -->
+<div class="absolute bottom-0 left-0 w-full flex justify-between text-xs text-secondary font-label-mono pt-2 pl-8">
+<span>0ms</span>
+<span>250ms</span>
+<span>500ms</span>
+<span>750ms</span>
+<span>1000ms</span>
+</div>
+<!-- Bars -->
+<div class="w-full flex items-center gap-4 group mt-4">
+<span class="font-label-sm text-label-sm text-on-surface w-16 text-right">Huffman</span>
+<div class="bg-primary h-6 w-[45%] rounded-r-sm transition-all duration-300 group-hover:opacity-80 relative">
+<div class="absolute -right-12 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-xs py-1 px-2 transition-opacity font-label-mono text-secondary">450ms</div>
+</div>
+</div>
+<div class="w-full flex items-center gap-4 group">
+<span class="font-label-sm text-label-sm text-on-surface w-16 text-right">RLE</span>
+<div class="bg-secondary h-6 w-[12%] rounded-r-sm transition-all duration-300 group-hover:opacity-80 relative">
+<div class="absolute -right-12 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-xs py-1 px-2 transition-opacity font-label-mono text-secondary">120ms</div>
+</div>
+</div>
+<div class="w-full flex items-center gap-4 group mb-6">
+<span class="font-label-sm text-label-sm text-on-surface w-16 text-right">LZ77</span>
+<div class="bg-outline h-6 w-[85%] rounded-r-sm transition-all duration-300 group-hover:opacity-80 relative">
+<div class="absolute -right-12 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-xs py-1 px-2 transition-opacity font-label-mono text-secondary">850ms</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Conclusion Section -->
+<section class="bg-surface-container-high rounded-xl p-8 border-l-4 border-primary flex items-start gap-4 shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl mt-1">lightbulb</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Analysis Conclusion</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Huffman was the most efficient for this text file because of its optimal prefix codes. While RLE was faster, its compression ratio was minimal for this type of data distribution. LZ77 provided a good middle ground but required significantly more processing time to build its dictionary.</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#F3F0EC] dark:bg-slate-950 full-width border-t border-gray-200 dark:border-gray-800 flat no shadows font-['Inter'] text-xs text-gray-500 dark:text-gray-400 uppercase tracking-widest mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-8 py-12 gap-6 w-full">
+<div class="font-bold text-gray-900 dark:text-white">HUFFZIP</div>
+<nav class="flex gap-6">
+<a class="text-gray-400 dark:text-gray-500 hover:text-teal-600 transition-colors hover:text-teal-700 dark:hover:text-teal-300 focus:ring-2 focus:ring-teal-500/20" href="#">Documentation</a>
+<a class="text-gray-400 dark:text-gray-500 hover:text-teal-600 transition-colors hover:text-teal-700 dark:hover:text-teal-300 focus:ring-2 focus:ring-teal-500/20" href="#">GitHub</a>
+<a class="text-gray-400 dark:text-gray-500 hover:text-teal-600 transition-colors hover:text-teal-700 dark:hover:text-teal-300 focus:ring-2 focus:ring-teal-500/20" href="#">Privacy Policy</a>
+<a class="text-gray-400 dark:text-gray-500 hover:text-teal-600 transition-colors hover:text-teal-700 dark:hover:text-teal-300 focus:ring-2 focus:ring-teal-500/20" href="#">Terms of Service</a>
+</nav>
+<div class="text-teal-700 dark:text-teal-500">© 2024 HuffZip Utility. Optimized for technical precision.</div>
+</div>
+</footer>
+</body></html>

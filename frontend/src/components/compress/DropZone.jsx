@@ -1,6 +1,6 @@
 import { useCallback, useState, useRef } from 'react';
 
-export default function DropZone({ onFileSelect, accept = '*', disabled = false, label = 'Upload File for Compression', sublabel = 'Tap to browse or drag & drop here' }) {
+export default function DropZone({ onFileSelect, accept = '*', disabled = false, label = 'Drop File Here', sublabel = 'or click to browse' }) {
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef(null);
 
@@ -15,7 +15,7 @@ export default function DropZone({ onFileSelect, accept = '*', disabled = false,
 
   return (
     <div
-      className={`dropzone-c ${isDragging ? 'dragover' : ''} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+      className={`bg-white dark:bg-[#1a1a1a] border-2 border-dashed border-[#005f6a] dark:border-teal-400 rounded-lg p-8 flex flex-col items-center justify-center text-center h-48 cursor-pointer hover:bg-[#f6f3ef] dark:hover:bg-[#222222] transition-colors group ${isDragging ? 'bg-[#005f6a]/5 dark:bg-teal-400/5' : ''} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
       onDragOver={handleDrag}
       onDragEnter={handleDragIn}
       onDragLeave={handleDragOut}
@@ -30,25 +30,15 @@ export default function DropZone({ onFileSelect, accept = '*', disabled = false,
         className="hidden"
         disabled={disabled}
       />
-      <div className="flex flex-col items-center gap-3 sm:gap-4 w-full">
-        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center" style={{ background: 'rgba(37,99,235,0.1)' }}>
-          <span className="material-symbols-outlined text-primary fill" style={{ fontSize: '28px', color: '#2563eb' }}>upload_file</span>
-        </div>
-        <div className="text-center px-2">
-          <p className="text-base sm:text-lg font-semibold text-on-bg mb-1">
-            {isDragging ? 'Drop your file here!' : label}
-          </p>
-          <p className="text-xs sm:text-sm text-on-surface-v">{sublabel}</p>
-        </div>
-        <button
-          className="btn-primary-c text-sm px-6 py-2.5 mt-1 sm:mt-2 w-full max-w-[240px]"
-          onClick={(e) => { e.stopPropagation(); inputRef.current?.click(); }}
-          type="button"
-        >
-          <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>attach_file</span>
-          Select File
-        </button>
-        <p className="text-xs text-muted-c mt-1">Max 20MB • All file types supported</p>
+      <span className="material-symbols-outlined text-4xl text-[#005f6a] dark:text-teal-400 mb-2 group-hover:scale-110 transition-transform">upload_file</span>
+      <h3 className="text-2xl font-semibold text-[#1c1c19] dark:text-white">
+        {isDragging ? 'Drop your file here!' : label}
+      </h3>
+      <p className="text-base text-[#3e494a] dark:text-gray-400 mt-1">{sublabel}</p>
+      <div className="flex gap-2 mt-4 text-[#6e797b] dark:text-gray-500">
+        <span className="material-symbols-outlined text-sm">description</span>
+        <span className="material-symbols-outlined text-sm">code</span>
+        <span className="material-symbols-outlined text-sm">table</span>
       </div>
     </div>
   );

@@ -1,0 +1,448 @@
+================================================================================
+                   HUFFZIP — HUFFMAN FILE COMPRESSOR
+                   Detailed Project Description
+================================================================================
+
+Project Title    : HuffZip — Huffman Coding File Compressor
+Subject          : Analysis and Design of Algorithms (ADA)
+Topic            : Unit 4 — Greedy Method (Huffman Codes)
+Course           : M.Sc. 2nd Semester
+License          : MIT — Built for academic purposes
+
+================================================================================
+                          PROJECT OVERVIEW
+================================================================================
+
+HuffZip is a full-stack web application that compresses any file using 
+Huffman Coding — a classic Greedy Algorithm. It features real-time 
+visualization of the algorithm working step-by-step, a live terminal-style 
+log feed, and a comparison tool to benchmark Huffman against other 
+compression algorithms (RLE and LZ77).
+
+The project demonstrates the practical application of the Greedy Method 
+from the ADA syllabus (Unit 4), specifically Huffman Codes, with:
+  - Greedy Choice Property  → Always merge the two minimum frequency nodes
+  - Optimal Substructure    → Subtrees are themselves optimal Huffman trees
+  - Time Complexity          → O(n log n) using a min-heap
+  - Space Complexity         → O(n) for tree and code table storage
+
+================================================================================
+                          TECH STACK
+================================================================================
+
+  Layer              Technology
+  ─────────────────  ─────────────────────────────────────
+  Frontend           React 19 + Vite 8 + Tailwind CSS v4
+  Visualization      D3.js (Huffman Tree) + Framer Motion + Recharts
+  UI Components      Radix UI (Label, Progress, Switch, Slot)
+  Routing            React Router DOM v7
+  HTTP Client        Axios
+  Backend            Python 3 + FastAPI + Uvicorn
+  Real-time Events   WebSocket (native) + HTTP Polling fallback
+  Database           Supabase (PostgreSQL)
+  File Storage       Supabase Storage (Signed URLs, auto-expiry)
+  Frontend Deploy    Cloudflare Pages
+  Backend Deploy     Render.com
+
+================================================================================
+                     TOTAL PAGES IN THE APPLICATION
+================================================================================
+
+The application has 8 PAGES (Routes):
+
+  #   Page Name              Route                  File
+  ──  ─────────────────────  ─────────────────────  ──────────────────────
+  1.  Home Page              /                      HomePage.jsx
+  2.  Compress Page          /compress              CompressPage.jsx
+  3.  Compress Image         /compress/image        CompressImagePage.jsx
+  4.  Compress Text          /compress/text         CompressTextPage.jsx
+  5.  Compress Audio         /compress/audio        CompressAudioPage.jsx
+  6.  Decompress Page        /decompress            DecompressPage.jsx
+  7.  Compare Algorithms     /compare               ComparePage.jsx
+  8.  How It Works           /how-it-works          HowItWorksPage.jsx
+
+================================================================================
+                     PAGE-WISE DETAILED DESCRIPTION
+================================================================================
+
+1. HOME PAGE (/)
+   ─────────────
+   - Hero section with project title and call-to-action
+   - Global stats bar (total files compressed, bytes saved, compressions)
+   - Tools grid showcasing available features (Compress, Decompress, Compare)
+   - Real-world applications section
+   - File: pages/HomePage.jsx (4,483 bytes)
+
+2. COMPRESS PAGE (/compress)
+   ──────────────────────────
+   - Drag-and-drop file upload zone
+   - File type detection (Image, Text, Document, Audio, Archive)
+   - Warnings for already-compressed formats (JPG, PNG, MP3, ZIP etc.)
+   - Real-time progress bar during compression
+   - Live WebSocket event feed (terminal-style log)
+   - D3.js Huffman Tree visualization (animated)
+   - Compression result card with stats (ratio, time, size saved)
+   - Download compressed .huff file button
+   - File: pages/CompressPage.jsx (7,340 bytes)
+
+3. COMPRESS IMAGE (/compress/image)
+   ──────────────────────────────────
+   - Specialized page for image compression
+   - File: pages/CompressImagePage.jsx (153 bytes)
+
+4. COMPRESS TEXT (/compress/text)
+   ───────────────────────────────
+   - Specialized page for text file compression
+   - File: pages/CompressTextPage.jsx (197 bytes)
+
+5. COMPRESS AUDIO (/compress/audio)
+   ─────────────────────────────────
+   - Specialized page for audio file compression
+   - File: pages/CompressAudioPage.jsx (153 bytes)
+
+6. DECOMPRESS PAGE (/decompress)
+   ──────────────────────────────
+   - Upload a .huff compressed file
+   - Validates magic bytes (HUFF header)
+   - Decodes Huffman tree from embedded code table
+   - Reconstructs original file from bit stream
+   - Download original file button
+   - File: pages/DecompressPage.jsx (7,104 bytes)
+
+7. COMPARE ALGORITHMS (/compare)
+   ──────────────────────────────
+   - Upload any file to benchmark 3 algorithms:
+       a) Huffman Coding  — O(n log n), Greedy optimal prefix codes
+       b) RLE (Run-Length Encoding) — O(n), simple substitution
+       c) LZ77 (Basic) — O(n × w), dictionary-based sliding window
+   - Side-by-side comparison with charts (Recharts)
+   - Shows compressed size, ratio, time, complexity for each
+   - Auto-generated conclusion explaining which algorithm won and why
+   - File: pages/ComparePage.jsx (10,600 bytes)
+
+8. HOW IT WORKS (/how-it-works)
+   ─────────────────────────────
+   - Step-by-step educational walkthrough of Huffman Coding
+   - Explains the 7 stages of the algorithm
+   - ADA syllabus connection table
+   - Time/Space complexity breakdown
+   - File: pages/HowItWorksPage.jsx (7,487 bytes)
+
+================================================================================
+                     FRONTEND COMPONENTS BREAKDOWN
+================================================================================
+
+  Category          Component                File                      Size
+  ────────────────  ───────────────────────  ────────────────────────  ──────
+  LAYOUT:
+                    Navbar                   layout/Navbar.jsx         6,197 B
+                    Footer                   layout/Footer.jsx          965 B
+
+  HOME:
+                    Hero                     home/Hero.jsx             1,203 B
+                    StatsBar                 home/StatsBar.jsx         2,304 B
+                    ToolsGrid                home/ToolsGrid.jsx        2,633 B
+                    RealWorldSection         home/RealWorldSection.jsx 1,347 B
+
+  COMPRESS:
+                    DropZone                 compress/DropZone.jsx     2,511 B
+                    ProgressBar              compress/ProgressBar.jsx    881 B
+                    ResultCard               compress/ResultCard.jsx   4,194 B
+                    DownloadBtn              compress/DownloadBtn.jsx  1,202 B
+
+  VISUALIZATION:
+                    HuffmanTree (D3.js)      visualization/HuffmanTree.jsx  5,923 B
+                    LiveLog                  visualization/LiveLog.jsx      1,798 B
+
+  UI (Shared):
+                    Button                   ui/button.jsx             1,639 B
+                    Label                    ui/label.jsx                557 B
+                    Progress                 ui/progress.jsx             678 B
+                    Switch                   ui/switch.jsx             1,043 B
+                    ThemeSwitch              ui/theme-switch.jsx       2,872 B
+                    AnimatedFooter           ui/animated-footer.jsx    5,124 B
+                    FileUploadCard           ui/file-upload-card.jsx   7,476 B
+                    FileUploadDemo           ui/file-upload-demo.jsx   2,511 B
+                    Demo                     ui/demo.jsx               1,239 B
+
+  TOTAL COMPONENTS: 21
+
+================================================================================
+                     CUSTOM REACT HOOKS
+================================================================================
+
+  Hook                  File                    Purpose
+  ────────────────────  ──────────────────────  ──────────────────────────────────
+  useCompression        hooks/useCompression.js  Manages upload, compression state
+  useGlobalStats        hooks/useGlobalStats.js  Fetches global stats from /stats
+  useTheme              hooks/useTheme.jsx       Dark/Light theme toggle provider
+  useWebSocket          hooks/useWebSocket.js    WebSocket connection for live events
+
+  TOTAL HOOKS: 4
+
+================================================================================
+                     UTILITY & CONSTANT FILES
+================================================================================
+
+  File                     Purpose
+  ───────────────────────  ────────────────────────────────────
+  utils/fileTypeIcon.js    Returns icon emoji for file category
+  utils/formatBytes.js     Formats bytes to KB/MB/GB string
+  utils/formatTime.js      Formats milliseconds to readable time
+  constants/fileTypes.js   File type category definitions
+  lib/utils.js             clsx + tailwind-merge utility (cn)
+
+  TOTAL: 5
+
+================================================================================
+                     BACKEND MODULES (Python/FastAPI)
+================================================================================
+
+  #   Module               File                 Lines   Purpose
+  ──  ───────────────────  ───────────────────  ──────  ──────────────────────────────────────
+  1.  Main API             main.py               297    FastAPI routes, CORS, WebSocket endpoint
+  2.  Huffman Engine       huffman_engine.py      495    7-stage Huffman compression algorithm
+  3.  Decompressor         decompressor.py        132    .huff → original file decoding
+  4.  Compare Module       compare.py             206    RLE + LZ77 algorithm implementations
+  5.  Event Streamer       event_streamer.py       94    WebSocket event broadcasting per job
+  6.  File Handler         file_handler.py        118    Upload validation + file type detection
+  7.  Supabase Client      supabase_client.py     169    Database + Storage operations
+  8.  Stats Module         stats.py                34    Global statistics tracker
+  9.  Cleanup Module       cleanup.py              49    Expired file/job deletion
+
+  TOTAL BACKEND MODULES: 9
+  TOTAL BACKEND LINES:   ~1,594
+
+================================================================================
+                     API ENDPOINTS
+================================================================================
+
+  Method    Endpoint              Purpose
+  ────────  ────────────────────  ──────────────────────────────────────────
+  GET       /                     API info and docs link
+  GET       /health               Health check
+  GET       /stats                Global compression statistics
+  GET       /cleanup?token=...    Trigger expired file cleanup (secured)
+  POST      /upload               Upload file → start Huffman compression
+  GET       /status/{job_id}      Check compression job status
+  GET       /download/{job_id}    Download compressed .huff file
+  POST      /decompress           Upload .huff → get original file back
+  POST      /compare              Compare Huffman vs RLE vs LZ77
+  WS        /ws/{job_id}          WebSocket for live compression events
+  GET       /events/{job_id}      HTTP polling fallback for events
+
+  TOTAL ENDPOINTS: 11 (9 REST + 1 WebSocket + 1 Polling)
+
+================================================================================
+                     THE HUFFMAN ALGORITHM — 7 STAGES
+================================================================================
+
+  Stage 1: FILE READ
+           → Read raw bytes of the uploaded file
+
+  Stage 2: FREQUENCY TABLE
+           → Count occurrence of each unique byte using Counter — O(n)
+
+  Stage 3: MIN-HEAP BUILD
+           → Create leaf nodes for each unique byte, heapify — O(k)
+
+  Stage 4: HUFFMAN TREE (GREEDY CORE)
+           → Repeatedly extract two minimum-frequency nodes from heap,
+             merge them into a parent node, push parent back.
+           → This is the Greedy Choice: always pick the two least frequent.
+           → Repeat until single root remains — O(k log k)
+
+  Stage 5: CODE TABLE
+           → DFS traversal: Left edge = 0, Right edge = 1
+           → Each leaf gets a unique variable-length binary code
+           → More frequent bytes get shorter codes (Greedy optimality)
+
+  Stage 6: ENCODING
+           → Replace each byte with its Huffman code
+           → Pack bit string into bytes (with padding)
+
+  Stage 7: PACKAGING
+           → Build custom .huff binary format:
+             [MAGIC: b'HUFF'] [ORIGINAL_SIZE: 8B] [FILENAME_LEN: 2B]
+             [FILENAME] [PADDING_BITS: 1B] [CODE_TABLE_LEN: 4B]
+             [CODE_TABLE: JSON] [COMPRESSED_DATA]
+
+================================================================================
+                     .HUFF FILE FORMAT SPECIFICATION
+================================================================================
+
+  HEADER:
+    - Magic bytes:      b'HUFF'           (4 bytes)
+    - Original size:    uint64 big-endian  (8 bytes)
+    - Filename length:  uint16 big-endian  (2 bytes)
+    - Filename:         UTF-8 variable     (N bytes)
+    - Padding bits:     uint8              (1 byte)
+    - Code table length: uint32 big-endian (4 bytes)
+    - Code table:       JSON (byte→code)   (M bytes)
+
+  BODY:
+    - Compressed data:  packed bits        (remaining bytes)
+
+================================================================================
+                     ADA SYLLABUS CONNECTION
+================================================================================
+
+  Unit 4 Topic              Used In Project
+  ────────────────────────  ───────────────────────────────────────
+  Huffman Codes              Core compression algorithm
+  Greedy Method              Algorithm design approach
+  Greedy Choice Property     Minimum frequency merge strategy
+  Optimal Substructure       Tree optimality proof
+  Time Complexity            O(n log n) — heap operations
+  Space Complexity           O(n) — tree + code table
+
+================================================================================
+                     KEY FEATURES SUMMARY
+================================================================================
+
+  ✅  Compress any file type (Image, Text, PDF, Audio, ZIP, etc.)
+  ✅  Real-time Huffman tree visualization (D3.js animated)
+  ✅  Live terminal-style log feed (WebSocket + polling fallback)
+  ✅  Download compressed .huff file (custom binary format)
+  ✅  Decompress .huff back to original (lossless round-trip)
+  ✅  Compare Huffman vs RLE vs LZ77 with charts
+  ✅  Auto-delete expired files (1-hour expiry for privacy)
+  ✅  Dark/Light theme toggle
+  ✅  Mobile responsive design
+  ✅  20MB max file size limit
+  ✅  Warnings for already-compressed formats
+  ✅  Global stats tracking (total files, bytes saved)
+
+================================================================================
+                     FILE COUNTS SUMMARY
+================================================================================
+
+  Category                  Count
+  ────────────────────────  ──────
+  Frontend Pages             8
+  Frontend Components       21
+  Custom Hooks               4
+  Utility/Constant Files     5
+  Backend Modules            9
+  API Endpoints             11
+  ────────────────────────  ──────
+  TOTAL SOURCE FILES        47+
+
+================================================================================
+                     COMPLETE PROJECT STRUCTURE
+================================================================================
+
+  huffzip/
+  ├── backend/
+  │   ├── main.py                    # FastAPI app, routes, WebSocket, CORS
+  │   ├── huffman_engine.py          # 7-stage Huffman algorithm (495 lines)
+  │   ├── decompressor.py            # .huff → original file decoder
+  │   ├── compare.py                 # RLE + LZ77 comparison engines
+  │   ├── event_streamer.py          # WebSocket event manager (per job)
+  │   ├── file_handler.py            # Upload validation + file type detection
+  │   ├── supabase_client.py         # Supabase DB + Storage operations
+  │   ├── stats.py                   # Global statistics tracker
+  │   ├── cleanup.py                 # Expired file/job deletion
+  │   ├── requirements.txt           # Python dependencies
+  │   ├── Procfile                   # Render.com deployment config
+  │   └── .env                       # Environment variables (Supabase keys)
+  │
+  ├── frontend/
+  │   ├── index.html                 # Entry HTML
+  │   ├── vite.config.js             # Vite config (proxy, Tailwind plugin)
+  │   ├── package.json               # NPM dependencies & scripts
+  │   └── src/
+  │       ├── main.jsx               # React entry point
+  │       ├── App.jsx                # Router + Theme Provider (8 routes)
+  │       ├── index.css              # Global styles (11,709 bytes)
+  │       │
+  │       ├── pages/
+  │       │   ├── HomePage.jsx       # Landing page
+  │       │   ├── CompressPage.jsx   # Main compression tool
+  │       │   ├── CompressImagePage.jsx
+  │       │   ├── CompressTextPage.jsx
+  │       │   ├── CompressAudioPage.jsx
+  │       │   ├── DecompressPage.jsx # .huff decompression
+  │       │   ├── ComparePage.jsx    # Algorithm comparison
+  │       │   └── HowItWorksPage.jsx # Algorithm explanation
+  │       │
+  │       ├── components/
+  │       │   ├── layout/
+  │       │   │   ├── Navbar.jsx
+  │       │   │   └── Footer.jsx
+  │       │   ├── home/
+  │       │   │   ├── Hero.jsx
+  │       │   │   ├── StatsBar.jsx
+  │       │   │   ├── ToolsGrid.jsx
+  │       │   │   └── RealWorldSection.jsx
+  │       │   ├── compress/
+  │       │   │   ├── DropZone.jsx
+  │       │   │   ├── ProgressBar.jsx
+  │       │   │   ├── ResultCard.jsx
+  │       │   │   └── DownloadBtn.jsx
+  │       │   ├── visualization/
+  │       │   │   ├── HuffmanTree.jsx  # D3.js animated tree
+  │       │   │   └── LiveLog.jsx      # Terminal-style event log
+  │       │   └── ui/
+  │       │       ├── button.jsx
+  │       │       ├── label.jsx
+  │       │       ├── progress.jsx
+  │       │       ├── switch.jsx
+  │       │       ├── theme-switch.jsx
+  │       │       ├── animated-footer.jsx
+  │       │       ├── file-upload-card.jsx
+  │       │       ├── file-upload-demo.jsx
+  │       │       └── demo.jsx
+  │       │
+  │       ├── hooks/
+  │       │   ├── useCompression.js
+  │       │   ├── useGlobalStats.js
+  │       │   ├── useTheme.jsx
+  │       │   └── useWebSocket.js
+  │       │
+  │       ├── utils/
+  │       │   ├── fileTypeIcon.js
+  │       │   ├── formatBytes.js
+  │       │   └── formatTime.js
+  │       │
+  │       ├── constants/
+  │       │   └── fileTypes.js
+  │       │
+  │       └── lib/
+  │           └── utils.js
+  │
+  ├── README.md
+  ├── render.yaml                    # Render.com deployment config
+  ├── quick_test.py                  # Quick test script
+  ├── test_api.py                    # API test script
+  ├── test_supabase.py               # Supabase connection test
+  ├── test_sample.txt                # Sample text file for testing
+  └── HuffZip_Project_Details.txt    # ← THIS FILE
+
+================================================================================
+                     HOW TO RUN LOCALLY
+================================================================================
+
+  Backend:
+    cd backend
+    pip install -r requirements.txt
+    uvicorn main:app --reload --port 8000
+
+  Frontend:
+    cd frontend
+    npm install
+    npm run dev
+
+  Open http://localhost:5173 in your browser.
+
+================================================================================
+                     DEPLOYMENT
+================================================================================
+
+  Frontend → Cloudflare Pages (auto-deploy from Git)
+  Backend  → Render.com (via render.yaml + Procfile)
+  Database → Supabase (PostgreSQL + Storage)
+
+================================================================================
+              END OF PROJECT DESCRIPTION
+================================================================================

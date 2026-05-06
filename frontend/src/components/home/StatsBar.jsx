@@ -8,62 +8,37 @@ export default function StatsBar() {
   const items = [
     {
       icon: 'folder_zip',
-      value: stats.total_files > 0 ? `${(stats.total_files / 1000).toFixed(1)}K+` : '2.4M+',
+      value: stats.total_files > 0 ? `${(stats.total_files / 1000).toFixed(1)}K` : '1.2k',
       label: 'Files Compressed',
-      sub: 'Across all sessions',
-      highlight: false,
     },
     {
-      icon: 'hard_drive',
-      value: stats.total_bytes_saved > 0 ? formatBytes(stats.total_bytes_saved) : '850 TB',
-      label: 'Space Saved',
-      sub: 'High efficiency achieved',
-      highlight: true,
+      icon: 'save',
+      value: stats.total_bytes_saved > 0 ? formatBytes(stats.total_bytes_saved) : '45GB',
+      label: 'Data Saved',
     },
     {
-      icon: 'call_merge',
-      value: '10B+',
-      label: 'Algorithm Merges',
-      sub: 'Greedy heap operations',
-      highlight: false,
+      icon: 'verified',
+      value: '99.9%',
+      label: 'Lossless',
     },
   ];
 
   return (
-    <section className="container-app py-4 sm:py-6">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {items.map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.08 }}
-            className={`rounded-xl p-5 border transition-all hover:shadow-md ${
-              item.highlight
-                ? 'bg-primary text-white border-transparent'
-                : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700'
-            }`}
-          >
-            <div className={`flex items-center gap-2 mb-2 ${
-              item.highlight ? 'text-white/80' : 'text-on-surface-v'
-            }`}>
-              <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>{item.icon}</span>
-              <span className="text-xs font-semibold uppercase tracking-wider">{item.label}</span>
-            </div>
-            <p className={`text-2xl sm:text-3xl font-bold ${
-              item.highlight ? 'text-white' : 'text-on-bg'
-            }`}>
-              {item.value}
-            </p>
-            <p className={`text-xs mt-1 ${
-              item.highlight ? 'text-white/70' : 'text-muted-c'
-            }`}>
-              {item.sub}
-            </p>
-          </motion.div>
+    <motion.section
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="w-full max-w-[1200px]"
+    >
+      <div className="bg-white dark:bg-[#1a1a1a] border border-[#bdc8cb]/30 dark:border-gray-800 rounded-lg py-5 md:py-10 px-2 md:px-4 grid grid-cols-3 divide-x divide-[#bdc8cb]/40 dark:divide-gray-800 shadow-sm">
+        {items.map((item, index) => (
+          <div key={index} className="flex flex-col items-center justify-center gap-1 md:gap-1.5 px-1 md:px-0">
+            <span className="material-symbols-outlined text-[#005f6a] dark:text-teal-400 text-2xl md:text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>{item.icon}</span>
+            <span className="text-[22px] sm:text-[28px] md:text-[36px] font-bold leading-tight text-[#1c1c19] dark:text-white mt-0.5 md:mt-1">{item.value}</span>
+            <span className="text-[9px] sm:text-[10px] md:text-xs font-bold text-[#6e797b] dark:text-gray-500 uppercase tracking-wide md:tracking-widest text-center leading-tight">{item.label}</span>
+          </div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
