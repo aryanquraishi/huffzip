@@ -34,7 +34,7 @@ export default function StatsBar() {
         {items.map((item, index) => (
           <div key={index} className="flex flex-col items-center justify-center gap-1 md:gap-1.5 px-1 md:px-0">
             <span className="material-symbols-outlined text-[#005f6a] dark:text-teal-400 text-2xl md:text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>{item.icon}</span>
-            <span className="text-[22px] sm:text-[28px] md:text-[36px] font-bold leading-tight text-[#1c1c19] dark:text-white mt-0.5 md:mt-1">{item.value}</span>
+            <span className="text-[20px] sm:text-[28px] md:text-[36px] font-bold leading-tight text-[#1c1c19] dark:text-white mt-0.5 md:mt-1 whitespace-nowrap">{item.value}</span>
             <span className="text-[9px] sm:text-[10px] md:text-xs font-bold text-[#6e797b] dark:text-gray-500 uppercase tracking-wide md:tracking-widest text-center leading-tight">{item.label}</span>
           </div>
         ))}
