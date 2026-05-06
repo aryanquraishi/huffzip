@@ -41,6 +41,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["Content-Disposition", "X-Original-Size", "X-Compressed-Size", "X-Time-Ms", "X-Original-Filename"],
 )
 
 # In-memory job storage (Supabase is optional)
@@ -240,6 +241,7 @@ async def decompress(file: UploadFile = File(...)):
             media_type="application/octet-stream",
             headers={
                 "Content-Disposition": f'attachment; filename="{original_filename}"',
+                "X-Original-Filename": original_filename,
                 "X-Original-Size": str(stats["original_size"]),
                 "X-Compressed-Size": str(stats["compressed_size"]),
                 "X-Time-Ms": str(stats["time_ms"])

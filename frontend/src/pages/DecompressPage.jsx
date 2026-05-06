@@ -53,7 +53,7 @@ export default function DecompressPage() {
         responseType: 'blob',
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      const originalFilename = response.headers['content-disposition']?.match(/filename="(.+)"/)?.[1] || 'restored_file';
+      const originalFilename = response.headers['x-original-filename'] || response.headers['content-disposition']?.match(/filename="(.+)"/)?.[1] || (selectedFile.name.replace(/\.huff$/, '') || 'restored_file');
       const blob = new Blob([response.data]);
       setProgress(100);
       setLogs(prev => [...prev, { text: '> Decompression complete!', color: 'text-green-400' }]);
