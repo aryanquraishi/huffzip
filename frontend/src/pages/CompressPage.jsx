@@ -40,6 +40,8 @@ export default function CompressPage({ fileType = 'any', accept }) {
     return 0;
   };
 
+  const handleReset = () => { setSelectedFile(null); reset(); };
+
   const getLabel = () => {
     if (status === 'uploading') return 'Uploading file...';
     if (status === 'complete') return 'Complete!';
@@ -48,7 +50,6 @@ export default function CompressPage({ fileType = 'any', accept }) {
   };
 
   const handleFileSelect = async (file) => { setSelectedFile(file); await upload(file); };
-  const handleReset = () => { setSelectedFile(null); reset(); };
 
   return (
     <main className="flex-grow container-app py-10">
@@ -92,7 +93,7 @@ export default function CompressPage({ fileType = 'any', accept }) {
       {/* Dashboard Grid: 4-col left + 8-col right */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* ═══ Left Column: Upload, Warning, Log ═══ */}
-        <div className={`lg:col-span-4 flex flex-col gap-6 min-w-0 ${activeTab !== 'tools' ? 'hidden lg:flex' : ''}`}>
+        <div className={`lg:col-span-4 flex flex-col gap-6 min-w-0 ${(activeTab !== 'tools' && activeTab !== 'log') ? 'hidden lg:flex' : ''}`}>
 
           {/* Small Drop Zone */}
           {status === 'idle' && (
@@ -186,16 +187,23 @@ export default function CompressPage({ fileType = 'any', accept }) {
         </div>
 
         {/* ═══ Right Column: Progress Stats + Tree Visualization ═══ */}
-        <div className={`lg:col-span-8 flex flex-col gap-6 min-w-0 ${activeTab === 'tools' ? 'hidden lg:flex' : ''}`}>
+        <div className={`lg:col-span-8 flex flex-col gap-6 min-w-0 ${(activeTab === 'tools' || activeTab === 'log') ? 'hidden lg:flex' : ''}`}>
 
           {/* Progress & Stats Header Card */}
           <div className="bg-white dark:bg-[#1a1a1a] border border-[#bdc8cb] dark:border-gray-800 rounded-lg p-6 flex flex-col gap-4 overflow-hidden" style={{ padding: '24px' }}>
-            <div className="flex justify-between items-end">
-              <div>
-                <h2 className="text-[32px] font-semibold leading-[1.3] text-[#1c1c19] dark:text-white">
+            <div className="flex justify-between items-start gap-4">
+              <div className="min-w-0 flex-1">
+                <h2 
+                  className={`font-semibold leading-[1.3] text-[#1c1c19] dark:text-white break-all ${
+                    (selectedFile?.name?.length || 0) > 60 ? 'text-sm' :
+                    (selectedFile?.name?.length || 0) > 40 ? 'text-lg' :
+                    (selectedFile?.name?.length || 0) > 25 ? 'text-2xl' :
+                    'text-[32px]'
+                  }`}
+                >
                   {selectedFile?.name || 'No file selected'}
                 </h2>
-                <p className="text-base text-[#3e494a] dark:text-gray-400">
+                <p className="text-base text-[#3e494a] dark:text-gray-400 mt-1">
                   {status === 'idle' ? 'Upload a file to begin' : status === 'complete' ? 'Compression complete!' : 'Compressing payload...'}
                 </p>
               </div>

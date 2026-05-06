@@ -59,6 +59,9 @@ export function useWebSocket(jobId) {
   }, []);
 
   useEffect(() => {
+    setEvents([]);
+    setLastEvent(null);
+    
     if (jobId) {
       connect();
     }
