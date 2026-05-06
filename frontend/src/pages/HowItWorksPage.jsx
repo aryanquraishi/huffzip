@@ -51,7 +51,7 @@ export default function HowItWorksPage() {
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center max-w-3xl mx-auto"
+        className="text-center max-w-3xl mx-auto mt-6"
       >
         <div className="w-16 h-16 rounded-full bg-[#007a87] text-white flex items-center justify-center mx-auto mb-6">
           <span className="material-symbols-outlined text-3xl">school</span>
