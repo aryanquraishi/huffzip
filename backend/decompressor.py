@@ -5,6 +5,7 @@ Decodes .huff files back to original format.
 
 import json
 import struct
+import zlib
 from typing import Tuple, Optional, Callable
 
 from huffman_engine import HUFF_MAGIC, format_size
@@ -26,6 +27,11 @@ async def decompress_file(
     async def emit(event_type: str, data: dict):
         if event_callback:
             await event_callback(event_type, data)
+    
+    # ━━━ Handle HUFZ (zlib-compressed) format ━━━
+    if huff_bytes[:4] == b'HUFZ':
+        original_len = struct.unpack('>I', huff_bytes[4:8])[0]
+        huff_bytes = zlib.decompress(huff_bytes[8:])
     
     # ━━━ Parse Header ━━━
     pos = 0

@@ -11,6 +11,7 @@ import heapq
 import json
 import struct
 import os
+import zlib
 from collections import Counter
 from typing import Dict, List, Tuple, Optional, Callable
 
@@ -35,6 +36,7 @@ class HuffmanNode:
 
 # ━━━ Magic Bytes for .huff format ━━━
 HUFF_MAGIC = b'HUFF'
+HUFZ_MAGIC = b'HUFZ'  # zlib-compressed variant
 
 
 # ━━━ Main Compression Function ━━━
@@ -327,13 +329,18 @@ async def compress_file(
     })
     
     # Build .huff file
-    compressed_data = _build_huff_file(
+    huff_data = _build_huff_file(
         original_size=original_size,
         filename=filename,
         padding_bits=padding_bits,
         codes=codes,
         packed_bytes=packed_bytes
     )
+    
+    # ━━━ STAGE 7b: ZLIB COMPRESSION ━━━
+    # Wrap entire .huff payload with zlib for maximum compression
+    zlib_data = zlib.compress(huff_data, level=9)
+    compressed_data = HUFZ_MAGIC + struct.pack('>I', len(huff_data)) + zlib_data
     
     compressed_size = len(compressed_data)
     elapsed_ms = int((time.time() - start_time) * 1000)
