@@ -141,7 +141,7 @@ export default function HowItWorksPage() {
             <h3 className="text-lg font-bold text-[#1c1c19] dark:text-white mb-2">
               ADA Syllabus Connection — Unit 4: Greedy Method
             </h3>
-            <p className="text-sm text-[#3e494a] dark:text-gray-400 leading-relaxed">
+            <p className="text-sm text-[#3e494a] dark:text-gray-400 leading-relaxed text-left md:text-justify">
               Huffman Coding is the canonical example of the Greedy Method paradigm in Algorithm Design and Analysis (ADA). It demonstrates how locally optimal choices — merging the two smallest frequencies — lead to a globally optimal solution for data compression.
             </p>
           </div>

@@ -20,7 +20,10 @@ export default function RealWorldSection() {
       >
         {/* Left — Text */}
         <div className="flex-1 space-y-6 w-full">
-          <h2 className="text-[32px] font-semibold leading-[1.3] text-[#1c1c19] dark:text-white">
+          <h2 
+            className="font-semibold leading-[1.3] text-[#1c1c19] dark:text-white whitespace-nowrap"
+            style={{ fontSize: 'clamp(1.25rem, 5vw, 2rem)' }}
+          >
             Real-World Applications
           </h2>
           <p className="text-base leading-relaxed text-[#3e494a] dark:text-gray-400 text-justify">

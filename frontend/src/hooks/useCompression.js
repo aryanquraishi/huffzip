@@ -15,34 +15,58 @@ export function useCompression() {
   const [warning, setWarning] = useState(null);
 
   const upload = useCallback(async (file) => {
-    try {
-      setStatus('uploading');
-      setError(null);
-      setResult(null);
-      setUploadProgress(0);
+    const MAX_RETRIES = 3;
+    const TIMEOUT_MS = 120000; // 120 seconds
 
-      const formData = new FormData();
-      formData.append('file', file);
+    setStatus('uploading');
+    setError(null);
+    setResult(null);
+    setUploadProgress(0);
 
-      const response = await axios.post(`${API_URL}/upload`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        onUploadProgress: (e) => {
-          const pct = Math.round((e.loaded * 100) / (e.total || 1));
-          setUploadProgress(pct);
-        },
-      });
+    const formData = new FormData();
+    formData.append('file', file);
 
-      const data = response.data;
-      setJobId(data.job_id);
-      setFileInfo(data.file_info);
-      setWarning(data.warning || null);
-      setStatus('processing');
-      return data.job_id;
-    } catch (err) {
-      const msg = err.response?.data?.detail || err.message || 'Upload failed';
-      setError(msg);
-      setStatus('error');
-      return null;
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+      try {
+        const response = await axios.post(`${API_URL}/upload`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+          timeout: TIMEOUT_MS,
+          onUploadProgress: (e) => {
+            const pct = Math.round((e.loaded * 100) / (e.total || 1));
+            setUploadProgress(pct);
+          },
+        });
+
+        const data = response.data;
+        setJobId(data.job_id);
+        setFileInfo(data.file_info);
+        setWarning(data.warning || null);
+        setStatus('processing');
+        return data.job_id;
+      } catch (err) {
+        const isNetworkError = !err.response && (err.code === 'ERR_NETWORK' || err.code === 'ECONNABORTED' || err.message === 'Network Error');
+
+        if (isNetworkError && attempt < MAX_RETRIES) {
+          // Wait before retry: 2s, 4s
+          const delay = attempt * 2000;
+          setUploadProgress(0);
+          await new Promise(r => setTimeout(r, delay));
+          continue;
+        }
+
+        // Final failure
+        let msg;
+        if (isNetworkError) {
+          msg = 'Network error — please check your internet connection and try again.';
+        } else if (err.code === 'ECONNABORTED') {
+          msg = 'Upload timed out — file may be too large or connection too slow.';
+        } else {
+          msg = err.response?.data?.detail || err.message || 'Upload failed';
+        }
+        setError(msg);
+        setStatus('error');
+        return null;
+      }
     }
   }, []);
 
