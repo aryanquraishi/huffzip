@@ -192,23 +192,19 @@ export default function CompressPage({ fileType = 'any', accept }) {
           {/* Progress & Stats Header Card */}
           <div className="bg-white dark:bg-[#1a1a1a] border border-[#bdc8cb] dark:border-gray-800 rounded-lg p-6 flex flex-col gap-4 overflow-hidden" style={{ padding: '24px' }}>
             <div className="flex justify-between items-start gap-4">
-              <div className="min-w-0 flex-1">
+              <div className="min-w-0 flex-1 overflow-hidden">
                 <h2 
-                  className={`font-semibold leading-[1.3] text-[#1c1c19] dark:text-white break-all ${
-                    (selectedFile?.name?.length || 0) > 60 ? 'text-sm' :
-                    (selectedFile?.name?.length || 0) > 40 ? 'text-lg' :
-                    (selectedFile?.name?.length || 0) > 25 ? 'text-2xl' :
-                    'text-[32px]'
-                  }`}
+                  className="font-semibold leading-[1.3] text-[#1c1c19] dark:text-white break-all line-clamp-2 text-sm md:text-2xl"
+                  title={selectedFile?.name || ''}
                 >
                   {selectedFile?.name || 'No file selected'}
                 </h2>
-                <p className="text-base text-[#3e494a] dark:text-gray-400 mt-1">
+                <p className="text-sm md:text-base text-[#3e494a] dark:text-gray-400 mt-1">
                   {status === 'idle' ? 'Upload a file to begin' : status === 'complete' ? 'Compression complete!' : 'Compressing payload...'}
                 </p>
               </div>
-              <div className="text-right">
-                <span className="text-[48px] font-bold leading-[1.2] tracking-[-0.02em] text-[#005f6a] dark:text-teal-400">
+              <div className="text-right shrink-0">
+                <span className="text-[32px] md:text-[48px] font-bold leading-[1.2] tracking-[-0.02em] text-[#005f6a] dark:text-teal-400">
                   {getProgress()}%
                 </span>
               </div>
